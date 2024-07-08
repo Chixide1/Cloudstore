@@ -29,7 +29,7 @@ if socket.gethostname() == "ChikLaptop":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['*.chikdoestech.xyz']
+ALLOWED_HOSTS = ['*.chikdoestech.xyz', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'Cloudstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'apps/filestore', BASE_DIR / 'apps/users'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
