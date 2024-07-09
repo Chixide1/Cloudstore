@@ -8,11 +8,11 @@ from django.contrib.auth import get_user_model
 # Create your views here.
 def register(request: HttpRequest):
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST) # type: ignore
         if form.is_valid():
             form.save()
             messages.success(request, "Your account was successfully created!")
-            return HttpResponseClientRedirect("/")
+            return redirect("/")
         else:
             return render(request,"register.html",{"form":form})
     form = RegisterForm()     

@@ -1,4 +1,4 @@
-@import "../bootstrap-5.3.3/scss/bootstrap.scss";
+@import "../bootstrap/css/bootstrap.css";
 
 $p-clr-1: #212529;
 $p-clr-2: #adb5bd;
@@ -26,13 +26,17 @@ body {
 
     &__container {
         width: 50%;
+        min-width: 350px;
         margin-inline: 20px;
     }
 
     &__content {
         margin: 0 auto;
-        width: 60%;
-        min-width: 320px;
+        width: 50%;
+
+        &--wide {
+            width: 65%;
+        }
     }
 
     &__intro {
@@ -66,9 +70,8 @@ body {
 
     &__image {
         flex-shrink: 1;
-        margin-right: 15px;
         background-image: url('../images/space.jpg');
-        height: 95%;
+        height: 100%;
         width: 50%;
         background-size: cover;
         background-repeat: repeat;
