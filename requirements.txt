@@ -1,0 +1,14 @@
+asgiref==3.8.1
+crispy-bootstrap5==2024.2
+Django==5.0.7
+django-appconf==1.0.6
+django-crispy-forms==2.2
+django-htmx==1.18.0
+django-sass-processor==1.4.1
+django_compressor==4.5
+libsass==0.23.0
+rcssmin==1.1.2
+rjsmin==1.2.2
+sqlparse==0.5.0
+tzdata==2024.1
+whitenoise==6.7.0
