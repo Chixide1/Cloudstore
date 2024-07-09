@@ -23,12 +23,12 @@
         <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
 
         <!--Bootstrap-->
-        <script src="/assets/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script> 
     </head>
     <body>
         {% block content %}{% endblock content %}
         <aside class="w-75 position-fixed bottom-0 start-50 translate-middle-x">
             {% include "messages.html" %}
-        </aside>       
+        </aside>     
     </body>
 </html>

@@ -70,4 +70,8 @@ body {
   background-color: #583DA1 !important;
   color: white !important; }
 
+.tooltip--register .tooltip-inner {
+  background-color: #583DA1;
+  max-width: 500px; }
+
 /*# sourceMappingURL=base.css.map */

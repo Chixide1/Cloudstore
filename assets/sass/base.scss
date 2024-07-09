@@ -117,3 +117,8 @@ body {
     background-color: $a-clr-2 !important;
     color: white !important;
 }
+
+.tooltip--register .tooltip-inner {
+    background-color: $a-clr-2;
+    max-width: 500px;
+ }

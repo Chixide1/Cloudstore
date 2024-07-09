@@ -7,6 +7,20 @@
 <main class="login">
     <div class="login__container">
         <div class="login__content login__content--wide">
+            <h4 class="login__title text-dark"><i class="fa-solid fa-circle-nodes"></i> Cloudstore</h4>
+            <hr>
+            <h5 class="login__subtitle">Register</h5>
+            <p class="text-secondary" style="font-weight: 500">
+                Enter your details below to register.
+                <span type="button" class="login__link text-dark" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="tooltip--register" data-bs-title="Your username is required and has to be 150 characters or fewer.
+                The username can contain letters, digits and @/./+/-/_ only.
+                Your password can’t be too similar to your other personal information.
+                Your password must contain at least 8 characters.
+                Your password can’t be a commonly used password.
+                Your password can’t be entirely numeric.
+                Password confirmation requires entering the same password again">Help?</span>
+            </p>
             <form method="POST" class="form-group text-dark">
                 {% csrf_token %}
                 {{form | crispy}}
@@ -16,4 +30,8 @@
     </div>
     <div class="login__image" title=" Image by freepik: https://www.freepik.com/free-vector/gradient-abstract-background_35296759.htm#position=23"></div>
 </main>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>  
 {% endblock content %}

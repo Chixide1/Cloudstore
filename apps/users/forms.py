@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import Widget
+from django.forms import Widget, Field
 
 class RegisterForm(UserCreationForm):
     class Meta:
@@ -8,20 +8,20 @@ class RegisterForm(UserCreationForm):
         fields = ["username","password1","password2"]
     
 
-    def __init__(self, *args: str, **kwargs: str):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
 
-        username: Widget = self.fields['username'].widget
-        username.attrs.update({
+        username: Field = self.fields['username']
+        username.help_text = ' '
+        username.widget.attrs.update({
             "hx-post":"/check-username/", 
             "hx-target":"#id_username_helptext", 
             "hx-trigger": "keyup changed delay:1s", 
-            "class":"text-dark",
-            "placeholder": "Enter your username"
-        }) 
+            "class":"text-dark"
+        })
 
-        password1: Widget = self.fields["password1"].widget
-        password1.attrs.update({"placeholder": "Enter your password"})
+        password1: Field = self.fields['password1']
+        password1.help_text = ''
 
-        password2: Widget = self.fields["password2"].widget
-        password2.attrs.update({"placeholder": "Enter your password"})
+        password2: Field = self.fields['password2']
+        password2.help_text = ''

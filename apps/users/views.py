@@ -24,6 +24,6 @@ def check_username(request: HttpRequest):
     if get_user_model().objects.filter(username=username).exists():
         return HttpResponse("<p style='color: red'>This username already exists<p>")
     elif username == "":
-        return HttpResponse("<div style='font-size: 12px; margin-top: .25rem' id='id_username_helptext' class='form-text'>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>")
+        return HttpResponse("")
     else:
         return HttpResponse("<p style='color: green'>This username is available<p>")
