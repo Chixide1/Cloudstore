@@ -67,7 +67,7 @@ ROOT_URLCONF = 'Cloudstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / "templates", BASE_DIR / 'apps/users', BASE_DIR / 'apps/filestore'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -168,5 +168,5 @@ MESSAGE_TAGS = {
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACK = "bootstrap5"
 
-# LOGIN_REDIRECT_URL = "/upload_files/"
+LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"

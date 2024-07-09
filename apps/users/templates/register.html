@@ -1,1 +1,13 @@
-<h1>Testing</h1>
+{% extends "login.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register{% endblock title %}
+
+
+{% block form %}
+    <form method="POST" class="form-group text-dark">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn btn-dark w-100">Register</button>
+    </form>
+{% endblock form %}

@@ -17,14 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from apps.users import views as v
+from apps.users import views as users
+from apps.filestore import views as filestore
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+]
+
+userpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
-    path("register/",v.register, name="register"),
+    path("register/",users.register, name="register"),
     path('logout/', auth_views.LogoutView.as_view(),name="logout")
 ]
 
+# filestore = [
+#     path('')
+# ]
+
+hmtx_views = [
+    path("check-username/", users.check_username, name='check-username')
+]
+
+urlpatterns += hmtx_views
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += userpatterns
