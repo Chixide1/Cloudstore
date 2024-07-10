@@ -60,19 +60,19 @@ body {
 .form-group label {
   font-weight: 600; }
 
-.form-group input::placeholder {
-  color: #adb5bd;
-  font-size: smaller; }
+.form-group input:focus {
+  border-color: #583DA1;
+  box-shadow: 0 0 0 0.25rem rgba(88, 61, 161, 0.25); }
 
 .form-group .invalid-feedback {
   margin-bottom: 0; }
 
-.active {
-  background-color: #583DA1 !important;
-  color: white !important; }
-
 .tooltip--register .tooltip-inner {
   background-color: #583DA1;
   max-width: 500px; }
+
+.active {
+  background-color: #583DA1 !important;
+  color: white !important; }
 
 /*# sourceMappingURL=base.css.map */

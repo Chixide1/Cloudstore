@@ -31,9 +31,9 @@ userpatterns = [
     path('logout/', auth_views.LogoutView.as_view(),name="logout")
 ]
 
-# filestore = [
-#     path('')
-# ]
+filestorepatterns = [
+    path('dashboard/', filestore.dashboard, name='dashboard')
+]
 
 hmtx_views = [
     path("check-username/", users.check_username, name='check-username')
@@ -42,3 +42,4 @@ hmtx_views = [
 urlpatterns += hmtx_views
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += userpatterns
+urlpatterns += filestorepatterns
