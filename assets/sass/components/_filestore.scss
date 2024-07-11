@@ -43,7 +43,7 @@
     &__quota {
         padding: 10px;
         height: 30%;
-        background-color: #343A40;
+        background-color: $primary-clr-3;
         margin-top: auto;
     }
 }
@@ -62,6 +62,11 @@
     &__input::placeholder {
         font-size: small;
     }
+
+    &__logout {
+        background-color: white;
+        border: none;
+    }
 }
 
 .dashboard {
@@ -77,13 +82,19 @@
     }
 
     background-color: $background-color-1;
-    height: 90vh;
+    height: 80vh;
     overflow-y: scroll;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));
     gap: 1em;
     max-width: 100%;
+
+    &__upload {
+        background-color: $background-color-1;
+        height: 10vh;
+        border-bottom: 1px solid var(--bs-gray-200);
+    }
 
     &__card {
         border-radius: 20px;
