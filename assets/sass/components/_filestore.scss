@@ -15,15 +15,25 @@
     color: white;
 }
 
+.dashboard {
+    width: 100%;
+
+    &__sidebar {
+        min-width: 30px;
+    }
+
+}
+
 .sidebar {
 
-    &__links {
+    &__link-group {
         margin-top: 25%;
     }
 
     &__link {
         color: #7F8082;
         transition: color 1s ease;
+        padding: 1rem;
     }
 
     &__link:hover {
@@ -39,19 +49,56 @@
 }
 
 .topbar {
+    gap: 1rem;
     height: 10vh;
     border-bottom: 1px solid $primary-clr-2;
 
     &__searchbar{
-        min-width: 300px;
-        width: 40%;
+        min-width: 40%;
+        max-width: 60%;
     }
 
     &__input::placeholder {
         font-size: small;
     }
+}
 
-    &__user {
-        font-size: small;
+@media (max-width: 768px) {
+
+    .dashboard {
+
+        &__sidebar {
+            width: 15%;
+            padding: 0 !important;
+        }
+
+    }
+
+
+    .sidebar {
+
+        &__link {
+            padding: 10px 15px;
+        }
+
+        span {
+            display: none;
+        }
+
+        * {
+            width: fit-content !important;
+        }
+
+        &__quota {
+            display: none;
+        }
+    }
+
+    .topbar {
+        height: 3rem;
+
+        &__user {
+            display: none !important;
+        }
     }
 }
