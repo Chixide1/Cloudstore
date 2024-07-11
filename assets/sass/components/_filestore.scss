@@ -1,4 +1,57 @@
 .active {
-    background-color: $accent-clr-2 !important;
+    background-color: $accent-clr !important;
     color: white !important;
+}
+
+.btn--accent {
+    background-color: $accent-clr;
+    color: white;
+    transition: all 1s ease;
+    font-size: small;
+}
+
+.btn--accent:hover {
+    background-color: rgba($accent-clr, 0.85);
+    color: white;
+}
+
+.sidebar {
+
+    &__links {
+        margin-top: 25%;
+    }
+
+    &__link {
+        color: #7F8082;
+        transition: color 1s ease;
+    }
+
+    &__link:hover {
+        color: white;
+    }
+
+    &__quota {
+        padding: 10px;
+        height: 30%;
+        background-color: #343A40;
+        margin-top: auto;
+    }
+}
+
+.topbar {
+    height: 10vh;
+    border-bottom: 1px solid $primary-clr-2;
+
+    &__searchbar{
+        min-width: 300px;
+        width: 40%;
+    }
+
+    &__input::placeholder {
+        font-size: small;
+    }
+
+    &__user {
+        font-size: small;
+    }
 }

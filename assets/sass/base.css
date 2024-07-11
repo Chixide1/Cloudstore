@@ -7,6 +7,20 @@ body {
   font-family: 'Chillax' !important;
   font-size: smaller !important; }
 
+.form-control {
+  background-color: #F9F9FB; }
+  .form-control:focus {
+    border-color: #583DA1;
+    box-shadow: 0 0 0 0.25rem rgba(88, 61, 161, 0.25);
+    background-color: #F9F9FB; }
+
+.accent-clr {
+  color: #583DA1; }
+
+.accent-bg {
+  background-color: #583DA1;
+  color: white; }
+
 .login {
   display: flex;
   justify-content: space-between;
@@ -74,5 +88,42 @@ body {
 .active {
   background-color: #583DA1 !important;
   color: white !important; }
+
+.btn--accent {
+  background-color: #583DA1;
+  color: white;
+  transition: all 1s ease;
+  font-size: small; }
+
+.btn--accent:hover {
+  background-color: rgba(88, 61, 161, 0.85);
+  color: white; }
+
+.sidebar__links {
+  margin-top: 25%; }
+
+.sidebar__link {
+  color: #7F8082;
+  transition: color 1s ease; }
+
+.sidebar__link:hover {
+  color: white; }
+
+.sidebar__quota {
+  padding: 10px;
+  height: 30%;
+  background-color: #343A40;
+  margin-top: auto; }
+
+.topbar {
+  height: 10vh;
+  border-bottom: 1px solid #EEEFF1; }
+  .topbar__searchbar {
+    min-width: 300px;
+    width: 40%; }
+  .topbar__input::placeholder {
+    font-size: small; }
+  .topbar__user {
+    font-size: small; }
 
 /*# sourceMappingURL=base.css.map */

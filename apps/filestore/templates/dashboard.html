@@ -8,20 +8,34 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center justify-content-between pt-3 pb-4 text-white min-vh-100">
-                <h5 class="w-100"><i class="fa-solid fa-circle-nodes"></i> Cloudstore</h5>
-                <nav class="nav flex-column w-100 navbar__links">
-                    <a href="#" class="nav-link text-secondary pt-3 pb-3 rounded active"><i class="fa-solid fa-house pe-3"></i>Home</a>
-                    <a href="#" class="nav-link text-secondary pt-3 pb-3 rounded"><i class="fa-solid fa-star pe-3"></i>Favourites</a>
-                    <a href="#" class="nav-link text-secondary pt-3 pb-3 rounded"><i class="fa-solid fa-square-share-nodes pe-3"></i>Shared</a>
-                    <a href="#" class="nav-link text-secondary pt-3 pb-3 rounded"><i class="fa-solid fa-trash pe-3"></i>Deleted</a>
+        <div class="col-2 px-3 bg-dark dashboard__sidebar">
+            <div class="sidebar d-flex flex-column pt-3 pb-4 text-white min-vh-100">
+                <h5 class="w-100"><i class="fa-solid fa-circle-nodes accent-clr pe-2"></i><span>Cloudstore</span></h5>
+                <nav class="nav flex-column w-100 sidebar__links">
+                    <a href="#" class="sidebar__link nav-link pt-3 pb-3 rounded active"><i class="fa-solid fa-house pe-3"></i><span>Home</span></a>
+                    <a href="#" class="sidebar__link nav-link pt-3 pb-3 rounded"><i class="fa-solid fa-star pe-3"></i><span>Favourites</span></a>
+                    <a href="#" class="sidebar__link nav-link pt-3 pb-3 rounded"><i class="fa-solid fa-square-share-nodes pe-3"></i><span>Shared</span></a>
+                    <a href="#" class="sidebar__link nav-link pt-3 pb-3 rounded"><i class="fa-solid fa-trash pe-3"></i><span>Deleted</span></a>
                 </nav>
-                <div class="nav-link text-secondary w-100 px-3 pt-3 pb-3 rounded"><i class="fa-solid fa-right-from-bracket pe-3"></i>Logout</div>
+                <div class="sidebar__quota w-100 rounded">
+                    <p>Storage</p>
+                    <p>2.8GB out of 6GB</p>
+                </div>
             </div>
         </div>
-        <div class="col py-3">
-            Content area...
+        <div class="col p-0">
+            <div class="topbar d-flex align-items-center justify-content-between px-4">
+                <form class="input-group topbar__searchbar">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass text-secondary"></i></span>
+                    <input class="form-control topbar__input text-secondary" type="text" placeholder="Search your file">
+                </form>
+                <div class="d-flex align-items-center gap-1">
+                    <p class="m-0 pe-2">Logged in as:</p>
+                    <i class="fa-solid fa-circle-user fa-2x"></i>
+                    <p class="m-0 topbar__user" style="font-weight: 500;">Chikezie</p>
+                </div>
+                <button class="btn btn--accent"><i class="fa-solid fa-right-from-bracket pe-2"></i>Logout</button>
+            </div>
         </div>
     </div>
 </div>

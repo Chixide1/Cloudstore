@@ -7,3 +7,22 @@ body {
     font-family: 'Chillax' !important;
     font-size: smaller !important;
 }
+
+.form-control {
+    background-color: #F9F9FB;
+
+    &:focus {
+        border-color: $accent-clr;
+        box-shadow: 0 0 0 0.25rem rgba($accent-clr, 0.25);
+        background-color: #F9F9FB;
+    }
+}
+
+.accent-clr {
+    color: $accent-clr;
+}
+
+.accent-bg {
+    background-color: $accent-clr;
+    color: white;
+}

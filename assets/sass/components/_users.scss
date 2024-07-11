@@ -87,8 +87,8 @@
     }
 
     & input:focus {
-        border-color: $accent-clr-2;
-        box-shadow: 0 0 0 0.25rem rgba($accent-clr-2, 0.25);
+        border-color: $accent-clr;
+        box-shadow: 0 0 0 0.25rem rgba($accent-clr, 0.25);
     }
 
     & .invalid-feedback {
@@ -97,6 +97,6 @@
 }
 
 .tooltip--register .tooltip-inner {
-    background-color: $accent-clr-2;
+    background-color: $accent-clr;
     max-width: 500px;
  }
