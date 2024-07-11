@@ -64,8 +64,14 @@
 }
 
 .dashboard {
+    background-color: $background-color-1;
     height: 90vh;
-    overflow: auto;
+    overflow-y: scroll;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+    gap: 1em;
+    max-width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -27,7 +27,7 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
-  background-color: #F9FAFC; }
+  background-color: #F6F6F6; }
   .login__container {
     width: 50%;
     min-width: 350px;
@@ -132,9 +132,14 @@ body {
     font-size: small; }
 
 .dashboard {
+  background-color: #F6F6F6;
   height: 90vh;
-  overflow: auto;
-  display: grid; }
+  overflow-y: scroll;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+  gap: 1em;
+  max-width: 100%; }
 
 @media (max-width: 768px) {
   .page__nav {

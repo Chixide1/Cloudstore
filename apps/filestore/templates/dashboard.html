@@ -8,46 +8,13 @@
 {% block content %}
 <main class="container-fluid page">
     <div class="row flex-nowrap">
-        <div class="col-2 px-3 bg-dark page__nav">
-            <div class="sidebar d-flex flex-column align-items-center pt-3 pb-4 text-white min-vh-100">
-                <h5 class="w-100 sidebar__logo"><i class="fa-solid fa-circle-nodes accent-clr"></i><span class="ps-2">Cloudstore</span></h5>
-                <nav class="nav flex-column w-100 sidebar__link-group">
-                    <a href="#" class="sidebar__link nav-link rounded active"><i class="fa-solid fa-house"></i><span class="ps-2">Home</span></a>
-                    <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-star"></i><span class="ps-2">Favourites</span></a>
-                    <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-square-share-nodes"></i><span class="ps-2">Shared</span></a>
-                    <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-trash"></i><span class="ps-2">Deleted</span></a>
-                </nav>
-                <div class="sidebar__quota w-100 rounded">
-                    <p>Storage</p>
-                    <p>2.8GB out of 6GB</p>
-                </div>
-            </div>
-        </div>
-        <div class="col p-0">
-            <div class="topbar d-flex align-items-center justify-content-between px-4">
-                <form class="input-group topbar__searchbar">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass text-secondary"></i></span>
-                    <input class="form-control topbar__input text-secondary" style="border-left: none;" type="text" placeholder="Search your file">
-                </form>
-                <div class="topbar__user d-flex align-items-center gap-1">
-                    <p class="m-0 pe-2">Logged in as:</p>
-                    <i class="fa-solid fa-circle-user fa-2x"></i>
-                    <p class="m-0" style="font-weight: 500; font-size: small;">Chikezie</p>
-                </div>
-                <button class="btn btn--accent"><i class="fa-solid fa-right-from-bracket pe-2"></i>Logout</button>
-            </div>
-            <div class="dashboard">
-                {% for n in test %}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title {{ n }}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+        <section class="col-2 px-3 bg-dark page__nav">
+            {% include "_sidebar.html" %}
+        </section>
+        <section class="col-10 p-0">
+            {% include "_topbar.html" %}
+            {% include "_dashboard.html" %}
+        </section>
     </div>
 </main>
 {% endblock content %}
