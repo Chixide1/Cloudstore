@@ -126,8 +126,8 @@ body {
   height: 10vh;
   border-bottom: 1px solid #EEEFF1; }
   .topbar__searchbar {
-    min-width: 30%;
-    max-width: 30%;
+    min-width: 150px;
+    max-width: 300px;
     background-color: #F6F6F6; }
   .topbar__input::placeholder {
     font-size: small; }
@@ -165,6 +165,13 @@ body {
   .topbar {
     height: 3rem; }
     .topbar__user {
-      display: none !important; } }
+      display: none !important; }
+    .topbar__logout span {
+      display: none; }
+  .dashboard {
+    min-width: 300px;
+    grid-template-columns: repeat(auto-fill, minmax(50%, auto)); }
+    .dashboard__card {
+      min-width: 125px; } }
 
 /*# sourceMappingURL=base.css.map */
