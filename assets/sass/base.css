@@ -99,9 +99,9 @@ body {
   background-color: rgba(88, 61, 161, 0.85);
   color: white; }
 
-.dashboard {
+.page {
   width: 100%; }
-  .dashboard__sidebar {
+  .page__nav {
     min-width: 30px; }
 
 .sidebar__link-group {
@@ -126,13 +126,18 @@ body {
   height: 10vh;
   border-bottom: 1px solid #EEEFF1; }
   .topbar__searchbar {
-    min-width: 40%;
-    max-width: 60%; }
+    min-width: 30%;
+    max-width: 30%; }
   .topbar__input::placeholder {
     font-size: small; }
 
+.dashboard {
+  height: 90vh;
+  overflow: auto;
+  display: grid; }
+
 @media (max-width: 768px) {
-  .dashboard__sidebar {
+  .page__nav {
     width: 15%;
     padding: 0 !important; }
   .sidebar__link {

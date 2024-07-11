@@ -3,4 +3,5 @@ from django.shortcuts import render
 # Create your views here.
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    test = [num for num in range(1, 101)]
+    return render(request, 'dashboard.html', {"test": test})

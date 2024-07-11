@@ -15,10 +15,10 @@
     color: white;
 }
 
-.dashboard {
+.page {
     width: 100%;
 
-    &__sidebar {
+    &__nav {
         min-width: 30px;
     }
 
@@ -54,8 +54,8 @@
     border-bottom: 1px solid $primary-clr-2;
 
     &__searchbar{
-        min-width: 40%;
-        max-width: 60%;
+        min-width: 30%;
+        max-width: 30%;
     }
 
     &__input::placeholder {
@@ -63,11 +63,16 @@
     }
 }
 
+.dashboard {
+    height: 90vh;
+    overflow: auto;
+}
+
 @media (max-width: 768px) {
 
-    .dashboard {
+    .page {
 
-        &__sidebar {
+        &__nav {
             width: 15%;
             padding: 0 !important;
         }
