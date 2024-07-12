@@ -1,14 +1,17 @@
 <div class="w-100 dashboard__upload d-flex align-items-center justify-content-between">
-    <h4 class="m-0" style="font-weight: 550;">All Files</h4>
-    <button class="btn btn--accent"><i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span></button>
+    <h4 class="m-0 dashboard__heading" style="font-weight: 550;">All Files</h4>
+    <button class="btn btn--accent dashboard__upload-button"><i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span></button>
 </div>
 <div class="dashboard">
     {% for n in test %}
-        <div class="card shadow-sm dashboard__card">
+        <div class="card shadow-sm file-card">
             <div class="card-body">
-                <h5 class="card-title">Card title {{ n }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn--accent">Go somewhere</a>
+                <div class="">
+                    <i class="fa-solid fa-file fa-3x accent-clr"></i>
+                </div>
+                <h5 class="card-title">File {{ n }}</h5>
+                <p class="card-text">12/07/2024, 10:30am</p>
+                <p class="card-header">123MB</p>
             </div>
         </div>
     {% endfor %}
