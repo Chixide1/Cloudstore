@@ -1,17 +1,19 @@
-<div class="w-100 dashboard__upload d-flex align-items-center justify-content-between">
-    <h4 class="m-0 dashboard__heading" style="font-weight: 550;">All Files</h4>
-    <button class="btn btn--accent dashboard__upload-button"><i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span></button>
-</div>
 <div class="dashboard">
+    <div class="dashboard__upload w-100 d-flex align-items-center justify-content-between">
+        <h5 class="m-0 dashboard__heading" style="font-weight: 550;">All Files</h5>
+    </div>
     {% for n in test %}
-        <div class="card shadow-sm file-card">
-            <div class="card-body">
-                <div class="">
-                    <i class="fa-solid fa-file fa-3x accent-clr"></i>
+        <div class="file-card shadow-sm">
+            <div class="file-card__main">
+                <div class="file-card__head d-flex justify-content-between align-items-start">
+                    <i class="fa-solid fa-file accent-clr" style="font-size: 30px;"></i>
+                    <button class="fa-solid fa-ellipsis-vertical file-card__menu btn"></button>
                 </div>
-                <h5 class="card-title">File {{ n }}</h5>
-                <p class="card-text">12/07/2024, 10:30am</p>
-                <p class="card-header">123MB</p>
+                <h5 class="file-card__title">File {{ n }}</h5>
+                <span class="file-card__date">12/07/2024, 10:30am</span>
+            </div>
+            <div class="file-card__size">
+                <span class="">123MB</span>
             </div>
         </div>
     {% endfor %}

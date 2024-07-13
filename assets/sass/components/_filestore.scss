@@ -31,7 +31,7 @@
     }
 
     &__link {
-        color: #7F8082;
+        color: $secondary-clr-1;
         transition: color 1s ease;
         padding: 1rem;
     }
@@ -67,9 +67,28 @@
         background-color: white;
         border: none;
     }
+
+    &__logout:active {
+        background-color: $secondary-clr-1;
+        color: $primary-clr-1;
+    }
+
+    &__user {
+        background-color: inherit;
+        border: none;
+    }
 }
 
 .dashboard {
+    background-color: $background-color-1;
+    height: 90vh;
+    overflow-y: scroll;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 190px));
+    gap: 1em;
+    max-width: 100%;
 
     &::-webkit-scrollbar {
         width: 14px;
@@ -81,20 +100,46 @@
         border-radius: 20px;
     }
 
-    background-color: $background-color-1;
-    height: 80vh;
-    overflow-y: scroll;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-    gap: 1em;
-    max-width: 100%;
-
     &__upload {
+        grid-column: 1/-1;
         background-color: $background-color-1;
         height: 10vh;
         border-bottom: 1px solid var(--bs-gray-200);
-        padding-inline: 3em;
+    }
+}
+
+.file-card {
+    $card-padding: 20px;
+    $edge-size: 20px;
+
+    background-color: white;
+    border-radius: $edge-size;
+    min-width: 125px;
+    border: 1px solid $secondary-clr-1;
+
+    &__main {
+        padding: $card-padding;
+        padding-bottom: $card-padding - 7px;
+    }
+
+    &__head {
+        margin-bottom: 3rem;
+        font-size: 23px;
+    }
+
+    &__menu {
+        color: $secondary-clr-1;
+    }
+
+    &__date {
+        color: $secondary-clr-1;
+    }
+
+    &__size {
+        background-color: $background-color-1;
+        padding: $card-padding - 5px;
+        border-bottom-left-radius: $edge-size;
+        border-bottom-right-radius: $edge-size;
     }
 }
 
@@ -132,11 +177,12 @@
     .topbar {
         height: 3rem;
 
-        &__user {
-            display: none !important;
+        &__upload-button {
+            font-size: smaller;
+            padding: 2px 8px;
         }
 
-        &__logout span {
+        &__upload-button span {
             display: none;
         }
 
@@ -150,12 +196,15 @@
                 font-size: x-small;
             }
         }
+
+        &__user p {
+            display: none !important;
+        }
     }
 
     .dashboard {
         min-width: 300px;
-        grid-template-columns: repeat(auto-fill, minmax(50%, auto));
-        height: 90vh;
+        grid-template-columns: repeat(auto-fill, minmax(200px, auto));
 
         &__upload {
             height: 5vh;
@@ -163,15 +212,6 @@
 
         &__heading {
             font-size: small;
-        }
-
-        &__upload-button {
-            font-size: smaller;
-            padding: 2px 8px;
-
-            span {
-                display: none;
-            }
         }
     }
 }
