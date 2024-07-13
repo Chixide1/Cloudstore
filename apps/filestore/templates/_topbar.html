@@ -10,11 +10,17 @@
     <div class="dropdown">
         <button class="topbar__user dropdown-toggle btn d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <p class="m-0" style="font-weight: 500; font-size: small;">Chikezie</p>
+            <p class="m-0" style="font-weight: 500; font-size: small;">{{ user.get_username }}</p>
         </button>
         <ul class="dropdown-menu">
             <li>
-                <a class="topbar__logout dropdown-item w-100" style="font-size: small;"><i class="fa-solid fa-right-from-bracket"></i><span class="ps-2">Logout</span></a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="topbar__logout dropdown-item w-100" style="font-size: small;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="ps-2">Logout</span>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
