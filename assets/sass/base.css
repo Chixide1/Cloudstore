@@ -183,6 +183,8 @@ body {
     font-size: 23px; }
   .file-card__menu {
     color: var(--bs-gray-600); }
+  .file-card__title {
+    font-size: 15px; }
   .file-card__date {
     color: var(--bs-gray-600); }
   .file-card__size {

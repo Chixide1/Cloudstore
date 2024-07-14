@@ -9,8 +9,8 @@ from .forms import UploadFileForm
 @login_required(login_url="/login")
 def dashboard(request):
     form = UploadFileForm()
-    test = [num for num in range(1, 101)]
-    return render(request, 'dashboard.html', {"test": test, 'form': form})
+    files = File.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {"files": files, 'form': form})
 
 def upload_file(request: HttpRequest):
     if request.method == 'POST' and request.FILES['file']:
@@ -20,7 +20,7 @@ def upload_file(request: HttpRequest):
                             file_name=data.name,
                             file_size=data.size,
                             user=request.user)
-        return HttpResponse
+        return HttpResponse()
     else:
-        return HttpResponseNotAllowed
+        return HttpResponse()
     
