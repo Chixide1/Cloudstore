@@ -140,6 +140,13 @@ body {
   .topbar__user {
     background-color: inherit;
     border: none; }
+  .topbar__upload-hidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; }
 
 .dashboard {
   background-color: #F6F6F6;
@@ -165,9 +172,9 @@ body {
 
 .file-card {
   background-color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   min-width: 125px;
-  border: 1px solid var(--bs-gray-600); }
+  border: 1px solid var(--bs-gray-400); }
   .file-card__main {
     padding: 20px;
     padding-bottom: 13px; }
@@ -179,10 +186,10 @@ body {
   .file-card__date {
     color: var(--bs-gray-600); }
   .file-card__size {
-    background-color: #F6F6F6;
+    background-color: #F0F0F0;
     padding: 15px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; }
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px; }
 
 @media (max-width: 768px) {
   .page__nav {
@@ -198,10 +205,11 @@ body {
     display: none; }
   .topbar {
     height: 3rem; }
-    .topbar__upload-button {
+    .topbar__upload-btn {
       font-size: smaller;
-      padding: 2px 8px; }
-    .topbar__upload-button span {
+      padding: 5px;
+      border-radius: 50%; }
+    .topbar__upload-btn span {
       display: none; }
     .topbar__searchbar * {
       font-size: x-small; }
@@ -209,7 +217,10 @@ body {
       font-size: x-small; }
     .topbar__user p {
       display: none !important; }
+    .topbar__user i {
+      font-size: 25px; }
   .dashboard {
+    height: 95vh;
     min-width: 300px;
     grid-template-columns: repeat(auto-fill, minmax(200px, auto)); }
     .dashboard__upload {

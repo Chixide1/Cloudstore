@@ -148,10 +148,10 @@ STATICFILES_FINDERS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Storage Handling
+#Storage Handling
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_URL = '/uploads/'
 
 # Allows POST requests
 CSRF_TRUSTED_ORIGINS = ['https://chik-fileshare-webapp.azureCloudstores.net','https://*.127.0.0.1']

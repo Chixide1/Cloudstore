@@ -1,7 +1,11 @@
 <div class="topbar d-flex align-items-center justify-content-between px-4">
-    <button class="btn btn--accent topbar__upload-button">
-        <i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span>
-    </button>
+    <form action="{% url 'upload_file' %}" id="upload-form" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn--accent topbar__upload-btn" id="upload-btn" type="button">
+            <i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span>
+        </button>
+    </form> 
     <form class="input-group topbar__searchbar">
         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass text-secondary"></i></span>
         <input class="form-control topbar__input text-secondary" style="border-left: none;" 

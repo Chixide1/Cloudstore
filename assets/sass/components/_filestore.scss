@@ -77,6 +77,15 @@
         background-color: inherit;
         border: none;
     }
+
+    &__upload-hidden {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
 }
 
 .dashboard {
@@ -110,12 +119,12 @@
 
 .file-card {
     $card-padding: 20px;
-    $edge-size: 20px;
+    $edge-size: 25px;
 
     background-color: white;
     border-radius: $edge-size;
     min-width: 125px;
-    border: 1px solid $secondary-clr-1;
+    border: 1px solid var(--bs-gray-400);
 
     &__main {
         padding: $card-padding;
@@ -136,7 +145,7 @@
     }
 
     &__size {
-        background-color: $background-color-1;
+        background-color: #F0F0F0;
         padding: $card-padding - 5px;
         border-bottom-left-radius: $edge-size;
         border-bottom-right-radius: $edge-size;
@@ -177,12 +186,13 @@
     .topbar {
         height: 3rem;
 
-        &__upload-button {
+        &__upload-btn {
             font-size: smaller;
-            padding: 2px 8px;
+            padding: 5px;
+            border-radius: 50%;
         }
 
-        &__upload-button span {
+        &__upload-btn span {
             display: none;
         }
 
@@ -200,9 +210,14 @@
         &__user p {
             display: none !important;
         }
+
+        &__user i {
+            font-size: 25px;
+        }
     }
 
     .dashboard {
+        height: 95vh;
         min-width: 300px;
         grid-template-columns: repeat(auto-fill, minmax(200px, auto));
 
