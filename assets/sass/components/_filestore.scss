@@ -88,7 +88,7 @@
     }
 }
 
-.dashboard {
+.file-grid {
     background-color: $background-color-1;
     height: 90vh;
     overflow-y: scroll;
@@ -117,7 +117,7 @@
 }
 
 .file-card {
-    $card-padding: 20px;
+    $card-padding: 12.5px;
     $edge-size: 25px;
     height: 240px;
 
@@ -128,7 +128,7 @@
 
     &__main {
         padding: $card-padding;
-        padding-bottom: $card-padding - 7px;
+        padding-bottom: $card-padding;
         height: 80%;
         display: flex;
         flex-direction: column;
@@ -136,14 +136,20 @@
     }
 
     &__icons {
-        margin-bottom: auto;
         font-size: 23px;
         justify-self: flex-start;
         width: 100%;
     }
 
+    &__img {
+        margin: auto;
+        color: $accent-clr;
+        font-size: 40px;
+    }
+
     &__menu {
         color: $secondary-clr-1;
+        padding: 5px;
     }
 
     &__title {
@@ -151,18 +157,23 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-align: center;
     }
 
     &__date {
         color: $secondary-clr-1;
+        text-align: center;
     }
 
     &__size {
         height: 20%;
         background-color: #F0F0F0;
-        padding: $card-padding - 5px;
+        padding: $card-padding - 5px 15px;
         border-bottom-left-radius: $edge-size;
         border-bottom-right-radius: $edge-size;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
     }
 }
 

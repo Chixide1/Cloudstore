@@ -13,8 +13,9 @@ def dashboard(request):
     files = File.objects.filter(user=request.user)
     return render(request, 'dashboard.html', {"files": files, 'form': form})
 
+@login_required(login_url="/login")
 def upload_file(request: HttpRequest):
-    if request.method == 'POST' and request.FILES['file']:
+    if request.htmx and request.method == 'POST' and request.FILES['file']:
         data =  request.FILES['file']
         File.objects.create(file_data=data,
                             file_name=data.name,
