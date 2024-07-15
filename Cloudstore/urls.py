@@ -30,20 +30,16 @@ urlpatterns = [
 userpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
     path("register/",users.register, name="register"),
-    path('logout/', auth_views.LogoutView.as_view(),name="logout")
+    path('logout/', auth_views.LogoutView.as_view(),name="logout"),
+    path("check-username/", users.check_username, name='check_username')
 ]
 
 filestorepatterns = [
-    path('', filestore.dashboard, name='dashboard')
-]
-
-hmtx_views = [
-    path("check-username/", users.check_username, name='check_username'),
+    path('', filestore.dashboard, name='dashboard'),
     path("upload_file/", filestore.upload_file, name='upload_file'),
     path("favourite_file/<int:file_id>", filestore.favourite_file, name='favourite_file')
 ]
 
-urlpatterns += hmtx_views
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += userpatterns
 urlpatterns += filestorepatterns
