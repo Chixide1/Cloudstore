@@ -38,8 +38,9 @@ filestorepatterns = [
 ]
 
 hmtx_views = [
-    path("check-username/", users.check_username, name='check-username'),
-    path("upload_file/", filestore.upload_file, name='upload_file')
+    path("check-username/", users.check_username, name='check_username'),
+    path("upload_file/", filestore.upload_file, name='upload_file'),
+    path("favourite_file/<int:file_id>", filestore.favourite_file, name='favourite_file')
 ]
 
 urlpatterns += hmtx_views

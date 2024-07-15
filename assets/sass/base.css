@@ -14,12 +14,8 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(88, 61, 161, 0.25);
     background-color: #F9F9FB; }
 
-.accent-clr {
-  color: #583DA1; }
-
-.accent-bg {
-  background-color: #583DA1;
-  color: white; }
+.btn {
+  border: none; }
 
 .login {
   display: flex;

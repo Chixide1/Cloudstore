@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import UploadFileForm
 
-
 # Create your views here.
 @login_required(login_url="/login")
 def dashboard(request):
@@ -15,7 +14,7 @@ def dashboard(request):
 
 @login_required(login_url="/login")
 def upload_file(request: HttpRequest):
-    if request.htmx and request.method == 'POST' and request.FILES['file']:
+    if request.htmx and request.method == 'POST' and request.FILES['file']: # type: ignore
         data =  request.FILES['file']
         File.objects.create(file_data=data,
                             file_name=data.name,
@@ -35,3 +34,9 @@ def upload_file(request: HttpRequest):
             </div>
         """)
     
+@login_required(login_url="/login")
+def favourite_file(request: HttpRequest, file_id: int):
+    file = File.objects.get(pk=file_id)
+    file.favourite = not file.favourite
+    file.save()
+    return render(request, "_file-card.html", {"file": file})
