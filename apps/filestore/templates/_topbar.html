@@ -3,18 +3,19 @@
     hx-encoding="multipart/form-data" method="post" hx-trigger="change" hx-target="#alerts"
     hx-indicator="#spinner">
         {% csrf_token %}
-        {{ form }}
+        {{ uploadform }}
         <button class="btn btn--accent topbar__upload-btn" id="upload-btn" type="button">
             <i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span>
         </button>
     </form> 
     <form class="input-group topbar__searchbar">
-        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass text-secondary"></i></span>
-        <input class="form-control topbar__input text-secondary" style="border-left: none;" 
-        type="text" placeholder="Search All Files...">
+        {% csrf_token %}
+        <label class="input-group-text rounded-start"><i class="fa-solid fa-magnifying-glass text-secondary"></i></label>
+        {{ searchform.query }} 
     </form>
     <div class="dropdown">
-        <button class="topbar__user dropdown-toggle btn d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="topbar__user dropdown-toggle btn d-flex align-items-center gap-1" 
+        type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <p class="m-0" style="font-weight: 500; font-size: small;">{{ user.get_username }}</p>
         </button>

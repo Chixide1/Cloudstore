@@ -39,7 +39,8 @@ filestorepatterns = [
     path("upload_file/", filestore.upload_file, name='upload_file'),
     path("favourite_file/<int:file_id>", filestore.favourite_file, name='favourite_file'),
     path("favourites/", filestore.favourites, name='favourites'),
-    path("all_files/", filestore.all_files, name='all_files')
+    path("all_files/", filestore.all_files, name='all_files'),
+    path("search/", filestore.search, name='search')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

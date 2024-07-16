@@ -1,20 +1,20 @@
 from time import sleep
-from django.http import HttpResponse, HttpRequest, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import File
-from .forms import UploadFileForm
+from .forms import UploadForm, SearchForm
 
 # Create your views here.
 @login_required(login_url="/login")
-def dashboard(request):
-    form = UploadFileForm()
+def dashboard(request: HttpRequest):
     files = File.objects.filter(user=request.user)
-    return render(request, 'dashboard.html', {"files": files, 'form': form})
+    context = {"files": files, 'uploadform': UploadForm(), 'searchform': SearchForm()}
+    return render(request, 'dashboard.html', context)
 
 @login_required(login_url="/login")
 def upload_file(request: HttpRequest):
-    if request.htmx and request.method == 'POST' and request.FILES['file']: # type: ignore
+    if request.htmx and request.method == 'POST' and request.FILES['file']:
         data =  request.FILES['file']
         File.objects.create(file_data=data,
                             file_name=data.name,
@@ -36,6 +36,9 @@ def upload_file(request: HttpRequest):
     
 @login_required(login_url="/login")
 def favourite_file(request: HttpRequest, file_id: int):
+    if not request.htmx:
+        return HttpResponseBadRequest()
+
     file = File.objects.get(pk=file_id)
     file.favourite = not file.favourite
     file.save()
@@ -43,10 +46,25 @@ def favourite_file(request: HttpRequest, file_id: int):
 
 @login_required(login_url="/login")
 def favourites(request: HttpRequest):
+    if not request.htmx:
+        return HttpResponseBadRequest()
+    
     files = File.objects.filter(user=request.user).filter(favourite=1)
     return render(request, '_favourites.html', {"files": files})
 
 @login_required(login_url="/login")
 def all_files(request: HttpRequest):
+    if not request.htmx:
+        return HttpResponseBadRequest()
+    
     files = File.objects.filter(user=request.user)
+    return render(request, '_all-files.html', {"files": files})
+
+@login_required(login_url="/login")
+def search(request: HttpRequest):
+    if not request.htmx and not request.POST:
+        return HttpResponseBadRequest()
+
+    query = request.POST.get('query')
+    files = File.objects.filter(user=request.user).filter(file_name__icontains=query)
     return render(request, '_all-files.html', {"files": files})
