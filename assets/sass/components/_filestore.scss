@@ -6,7 +6,7 @@
 .btn--accent {
     background-color: $accent-clr;
     color: white;
-    transition: all 1s ease;
+    transition: color 1s ease;
     font-size: small;
 }
 
@@ -46,6 +46,10 @@
         background-color: $primary-clr-3;
         margin-top: auto;
     }
+
+    &__logo i {
+        color: $accent-clr;
+    }
 }
 
 .topbar {
@@ -73,9 +77,8 @@
         color: $primary-clr-1;
     }
 
-    &__user {
-        background-color: inherit;
-        border: none;
+    &__user:hover {
+        color: rgba($primary-clr-1, 0.9);
     }
 
     &__upload-hidden {
@@ -95,7 +98,8 @@
     padding-inline: 20px;
     padding-bottom: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(125px, 240px));
+    grid-template-columns: repeat(auto-fill, minmax(240px, auto ));
+    grid-template-rows: min-content auto;
     gap: 1em;
     max-width: 100%;
 
@@ -178,6 +182,13 @@
 }
 
 @media (max-width: 768px) {
+
+    .active {
+        background-color: inherit !important;
+        border-left: 2.5px solid $accent-clr;
+        border-radius: 0px !important;
+        color: $accent-clr !important;
+    }
 
     .page {
 

@@ -1,6 +1,6 @@
-<div class="file-grid">
+<div id="content" class="file-grid">
     <div class="file-grid__upload w-100 d-flex align-items-end justify-content-between">
-        <h4 class="m-0 file-grid__heading" style="font-weight: 500;">All Files</h4>
+        <h4 class="m-0 file-grid__heading" style="font-weight: 500;">{% block subtitle %}All Files{% endblock subtitle %}</h4>
     </div>
     {% for file in files %}
         {% include "_file-card.html" %}

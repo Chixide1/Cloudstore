@@ -1,8 +1,8 @@
 <div class="sidebar d-flex flex-column align-items-center pt-3 pb-4 text-white min-vh-100">
-    <h5 class="w-100 sidebar__logo"><i class="fa-solid fa-circle-nodes accent-clr"></i><span class="ps-2">Cloudstore</span></h5>
+    <h5 class="w-100 sidebar__logo"><i class="fa-solid fa-circle-nodes"></i><span class="ps-2">Cloudstore</span></h5>
     <nav class="nav flex-column w-100 sidebar__link-group">
-        <a href="#" class="sidebar__link nav-link rounded active"><i class="fa-solid fa-file"></i><span class="ps-2">All Files</span></a>
-        <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-star"></i><span class="ps-2">Favourites</span></a>
+        <a href="{% url 'all_files' %}" hx-get="{% url 'all_files' %}" hx-target="#content" hx-swap="outerHTML" class="sidebar__link nav-link rounded active"><i class="fa-solid fa-file"></i><span class="ps-2">All Files</span></a>
+        <a href="{% url 'favourites' %}" hx-get="{% url 'favourites' %}" hx-target="#content" hx-swap="outerHTML" class="sidebar__link nav-link rounded"><i class="fa-solid fa-star"></i><span class="ps-2">Favourites</span></a>
         <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-square-share-nodes"></i><span class="ps-2">Shared</span></a>
         <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-trash"></i><span class="ps-2">Deleted</span></a>
     </nav>

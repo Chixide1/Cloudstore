@@ -40,3 +40,13 @@ def favourite_file(request: HttpRequest, file_id: int):
     file.favourite = not file.favourite
     file.save()
     return render(request, "_file-card.html", {"file": file})
+
+@login_required(login_url="/login")
+def favourites(request: HttpRequest):
+    files = File.objects.filter(user=request.user).filter(favourite=1)
+    return render(request, '_favourites.html', {"files": files})
+
+@login_required(login_url="/login")
+def all_files(request: HttpRequest):
+    files = File.objects.filter(user=request.user)
+    return render(request, '_all-files.html', {"files": files})
