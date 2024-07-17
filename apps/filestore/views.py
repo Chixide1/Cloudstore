@@ -1,6 +1,6 @@
 from time import sleep
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import UploadForm, SearchForm
@@ -66,5 +66,9 @@ def search(request: HttpRequest):
         return HttpResponseBadRequest()
 
     query = request.POST.get('query')
+
+    if not query:
+        return all_files(request)
+       
     files = File.objects.filter(user=request.user).filter(file_name__icontains=query)
-    return render(request, '_all-files.html', {"files": files})
+    return render(request, '_search.html', {"files": files})
