@@ -35,3 +35,8 @@ body {
     transition: background-color 500ms ease;
     background-color: var(--bs-gray-200);
 }
+
+.dropdown-item:active {
+    background-color: var(--bs-gray-400);
+    color: $accent-clr;
+}

@@ -28,6 +28,10 @@ body {
   transition: background-color 500ms ease;
   background-color: var(--bs-gray-200); }
 
+.dropdown-item:active {
+  background-color: var(--bs-gray-400);
+  color: #583DA1; }
+
 .login {
   display: flex;
   justify-content: space-between;
@@ -174,8 +178,7 @@ body {
 
 @media (max-width: 768px) {
   .page__nav {
-    width: 15%;
-    padding: 0 !important; }
+    max-width: 30px; }
   .file-grid {
     height: 95vh; } }
 
@@ -205,7 +208,7 @@ body {
 .sidebar__logo i {
   color: #583DA1; }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .sidebar__link {
     padding: 10px 15px; }
   .sidebar__link--active {
@@ -213,6 +216,8 @@ body {
     border-left: 2.5px solid #583DA1;
     border-radius: 0px !important;
     color: #583DA1 !important; }
+  .sidebar__quota {
+    display: none; }
   .sidebar span {
     display: none; }
   .sidebar * {

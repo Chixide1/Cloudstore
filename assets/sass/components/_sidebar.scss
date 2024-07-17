@@ -33,7 +33,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
     .sidebar {
 
@@ -46,6 +46,10 @@
             border-left: 2.5px solid $accent-clr;
             border-radius: 0px !important;
             color: $accent-clr !important;
+        }
+
+        &__quota {
+            display: none;
         }
 
         span {
