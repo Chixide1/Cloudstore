@@ -17,8 +17,16 @@ body {
 .btn {
   border: none; }
 
-.fa-star {
-  transition: all 1s ease; }
+.dropdown-menu {
+  padding-inline: 5px;
+  width: fit-content; }
+
+.dropdown-item {
+  border-radius: var(--bs-dropdown-border-radius); }
+
+.dropdown-item:hover {
+  transition: background-color 500ms ease;
+  background-color: var(--bs-gray-200); }
 
 .login {
   display: flex;
@@ -83,10 +91,6 @@ body {
 .tooltip--register .tooltip-inner {
   background-color: #583DA1;
   max-width: 500px; }
-
-.active {
-  background-color: #583DA1 !important;
-  color: white !important; }
 
 .btn--accent {
   background-color: #583DA1;
@@ -169,11 +173,6 @@ body {
     align-items: center; }
 
 @media (max-width: 768px) {
-  .active {
-    background-color: inherit !important;
-    border-left: 2.5px solid #583DA1;
-    border-radius: 0px !important;
-    color: #583DA1 !important; }
   .page__nav {
     width: 15%;
     padding: 0 !important; }
@@ -184,12 +183,18 @@ body {
   margin-top: 25%; }
 
 .sidebar__link {
+  background-color: var(--bs-dark-500);
   color: var(--bs-gray-600);
-  transition: color 1s ease;
-  padding: 1rem; }
+  padding: 1rem;
+  transition: color 1.5s ease; }
 
 .sidebar__link:hover {
   color: white; }
+
+.sidebar__link--active {
+  background-color: #583DA1 !important;
+  color: white !important;
+  transition: background-color 1.5s ease; }
 
 .sidebar__quota {
   padding: 10px;
@@ -203,6 +208,11 @@ body {
 @media (max-width: 768px) {
   .sidebar__link {
     padding: 10px 15px; }
+  .sidebar__link--active {
+    background-color: inherit !important;
+    border-left: 2.5px solid #583DA1;
+    border-radius: 0px !important;
+    color: #583DA1 !important; }
   .sidebar span {
     display: none; }
   .sidebar * {
@@ -225,9 +235,9 @@ body {
     border: none; }
   .topbar__logout:active {
     background-color: var(--bs-gray-600);
-    color: #212529; }
+    color: var(--bs-dark-500); }
   .topbar__user:hover {
-    color: rgba(33, 37, 41, 0.9); }
+    color: rgba(var(--bs-dark-500), 0.9); }
   .topbar__upload-hidden {
     width: 0.1px;
     height: 0.1px;

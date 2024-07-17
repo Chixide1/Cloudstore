@@ -22,6 +22,16 @@ body {
     border: none;
 }
 
-.fa-star {
-    transition: all 1s ease;
+.dropdown-menu {
+    padding-inline: 5px;
+    width: fit-content;
+}
+
+.dropdown-item {
+    border-radius: var(--bs-dropdown-border-radius);
+}
+
+.dropdown-item:hover {
+    transition: background-color 500ms ease;
+    background-color: var(--bs-gray-200);
 }

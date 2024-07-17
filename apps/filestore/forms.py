@@ -6,7 +6,7 @@ class UploadForm(forms.Form):
 class SearchForm(forms.Form):
     query = forms.CharField(widget=forms.TextInput(attrs={
         'class':'form-control topbar__input text-dark','style': 'border-left: none;',
-        'type':'text', 'placeholder':'Search All Files...',
+        'type':'text', 'placeholder':'Search All Files...', 'id': 'searchInput',
         "hx-post":"/search/",
         'hx-swap': 'outerHTML',
         "hx-target":"#content", 

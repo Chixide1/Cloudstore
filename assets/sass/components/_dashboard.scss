@@ -1,8 +1,3 @@
-.active {
-    background-color: $accent-clr !important;
-    color: white !important;
-}
-
 .btn--accent {
     background-color: $accent-clr;
     color: white;
@@ -115,13 +110,6 @@
 }
 
 @media (max-width: 768px) {
-
-    .active {
-        background-color: inherit !important;
-        border-left: 2.5px solid $accent-clr;
-        border-radius: 0px !important;
-        color: $accent-clr !important;
-    }
 
     .page {
 
