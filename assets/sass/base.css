@@ -103,52 +103,6 @@ body {
   .page__nav {
     min-width: 30px; }
 
-.sidebar__link-group {
-  margin-top: 25%; }
-
-.sidebar__link {
-  color: var(--bs-gray-600);
-  transition: color 1s ease;
-  padding: 1rem; }
-
-.sidebar__link:hover {
-  color: white; }
-
-.sidebar__quota {
-  padding: 10px;
-  height: 30%;
-  background-color: var(--bs-gray-800);
-  margin-top: auto; }
-
-.sidebar__logo i {
-  color: #583DA1; }
-
-.topbar {
-  gap: 1rem;
-  height: 10vh;
-  border-bottom: 1px solid #EEEFF1; }
-  .topbar__searchbar {
-    min-width: 150px;
-    max-width: 300px;
-    background-color: #F6F6F6; }
-  .topbar__input::placeholder {
-    font-size: small; }
-  .topbar__logout {
-    background-color: white;
-    border: none; }
-  .topbar__logout:active {
-    background-color: var(--bs-gray-600);
-    color: #212529; }
-  .topbar__user:hover {
-    color: rgba(33, 37, 41, 0.9); }
-  .topbar__upload-hidden {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1; }
-
 .file-grid {
   background-color: #F6F6F6;
   height: 90vh;
@@ -223,6 +177,30 @@ body {
   .page__nav {
     width: 15%;
     padding: 0 !important; }
+  .file-grid {
+    height: 95vh; } }
+
+.sidebar__link-group {
+  margin-top: 25%; }
+
+.sidebar__link {
+  color: var(--bs-gray-600);
+  transition: color 1s ease;
+  padding: 1rem; }
+
+.sidebar__link:hover {
+  color: white; }
+
+.sidebar__quota {
+  padding: 10px;
+  height: 30%;
+  background-color: var(--bs-gray-800);
+  margin-top: auto; }
+
+.sidebar__logo i {
+  color: #583DA1; }
+
+@media (max-width: 768px) {
   .sidebar__link {
     padding: 10px 15px; }
   .sidebar span {
@@ -230,7 +208,35 @@ body {
   .sidebar * {
     width: fit-content !important; }
   .sidebar__quota {
-    display: none; }
+    display: none; } }
+
+.topbar {
+  gap: 1rem;
+  height: 10vh;
+  border-bottom: 1px solid #EEEFF1; }
+  .topbar__searchbar {
+    min-width: 150px;
+    max-width: 300px;
+    background-color: #F6F6F6; }
+  .topbar__input::placeholder {
+    font-size: small; }
+  .topbar__logout {
+    background-color: white;
+    border: none; }
+  .topbar__logout:active {
+    background-color: var(--bs-gray-600);
+    color: #212529; }
+  .topbar__user:hover {
+    color: rgba(33, 37, 41, 0.9); }
+  .topbar__upload-hidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; }
+
+@media (max-width: 768px) {
   .topbar {
     height: 3rem; }
     .topbar__upload-btn {
@@ -246,14 +252,6 @@ body {
     .topbar__user p {
       display: none !important; }
     .topbar__user i {
-      font-size: 25px; }
-  .dashboard {
-    height: 95vh;
-    min-width: 300px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, auto)); }
-    .dashboard__upload {
-      height: 5vh; }
-    .dashboard__heading {
-      font-size: small; } }
+      font-size: 25px; } }
 
 /*# sourceMappingURL=base.css.map */

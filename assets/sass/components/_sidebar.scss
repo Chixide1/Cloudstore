@@ -1,0 +1,49 @@
+.sidebar {
+
+    &__link-group {
+        margin-top: 25%;
+    }
+
+    &__link {
+        color: $secondary-clr-1;
+        transition: color 1s ease;
+        padding: 1rem;
+    }
+
+    &__link:hover {
+        color: white;
+    }
+
+    &__quota {
+        padding: 10px;
+        height: 30%;
+        background-color: $primary-clr-3;
+        margin-top: auto;
+    }
+
+    &__logo i {
+        color: $accent-clr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        &__link {
+            padding: 10px 15px;
+        }
+
+        span {
+            display: none;
+        }
+
+        * {
+            width: fit-content !important;
+        }
+
+        &__quota {
+            display: none;
+        }
+    }
+}

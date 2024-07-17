@@ -1,0 +1,74 @@
+.topbar {
+    gap: 1rem;
+    height: 10vh;
+    border-bottom: 1px solid $primary-clr-2;
+
+    &__searchbar{
+        min-width: 150px;
+        max-width: 300px;
+        background-color: $background-color-1;
+    }
+
+    &__input::placeholder {
+        font-size: small;
+    }
+
+    &__logout {
+        background-color: white;
+        border: none;
+    }
+
+    &__logout:active {
+        background-color: $secondary-clr-1;
+        color: $primary-clr-1;
+    }
+
+    &__user:hover {
+        color: rgba($primary-clr-1, 0.9);
+    }
+
+    &__upload-hidden {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+}
+
+@media (max-width: 768px){
+
+    .topbar {
+        height: 3rem;
+
+        &__upload-btn {
+            font-size: smaller;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        &__upload-btn span {
+            display: none;
+        }
+
+        &__searchbar {
+            
+            * {
+                font-size: x-small;
+            }
+
+            input::placeholder {
+                font-size: x-small;
+            }
+        }
+
+        &__user p {
+            display: none !important;
+        }
+
+        &__user i {
+            font-size: 25px;
+        }
+    }
+}
