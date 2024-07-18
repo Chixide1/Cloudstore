@@ -1,8 +1,9 @@
 {% for message in messages %}
-<div class="alert {{ message.tags }} alert-dismissible shadow fade show" role="alert">
-    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+<div class="alert {{ message.tags }} alert-dismissible shadow fade 
+show d-flex align-items-center" role="alert">
+    <button type="button" class="close btn me-2" data-bs-dismiss="alert" aria-label="Close">
+        <i class="fa-solid fa-circle-xmark"></i>
     </button>
-    {{ message | safe }}
+    <span>{{ message | safe }}</span>
 </div>
 {% endfor %}

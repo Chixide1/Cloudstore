@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import UploadForm, SearchForm
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -19,25 +20,28 @@ def dashboard(request: HttpRequest):
 
 @login_required(login_url="/login")
 def upload_file(request: HttpRequest):
-    if request.htmx and request.method == 'POST' and request.FILES['file']:
-        data =  request.FILES['file']
-        File.objects.create(data=data,
-                            name=data.name,
-                            size=data.size,
-                            user=request.user)
-        return HttpResponse("""
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-check"></i><span class="ps-2">File uploaded successfully.</span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        """)
-    else:
-        return HttpResponse("""
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-triangle-exclamation"></i><span class="ps-2">Could not upload file.</span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        """)
+    if not request.htmx and not request.method == 'POST' and not request.FILES['file']:
+        messages.warning(request, "There was an error when trying to upload the file!")
+        return dashboard(request)
+    
+
+    data =  request.FILES['file']
+    File.objects.create(data=data, name=data.name, size=data.size, user=request.user)
+    messages.success(request, "File uploaded successfully")
+    return dashboard(request)
+    #     return HttpResponse("""
+    #         <div class="alert alert-success alert-dismissible fade show" role="alert">
+    #             <i class="fa-solid fa-circle-check"></i><span class="ps-2">File uploaded successfully.</span>
+    #             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    #         </div>
+    #     """)
+    # else:
+    #     return HttpResponse("""
+    #         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    #             <i class="fa-solid fa-triangle-exclamation"></i><span class="ps-2">Could not upload file.</span>
+    #             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    #         </div>
+    #     """)
     
 @login_required(login_url="/login")
 def favourite_file(request: HttpRequest, file_id: int):

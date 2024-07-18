@@ -29,22 +29,20 @@
 
     <!-- Bootstrap -->
         <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script> 
-
-    <!-- Javascript -->
-        <script src="{% static 'js/main.js' %}"></script>
-        {% block js %}{% endblock js %}
     </head>
     <body>
+        <main id="main">
+            {% block content %}{% endblock content %}
         
-        {% block content %}{% endblock content %}
-        
-        <aside class="w-75 position-fixed bottom-0 start-50 translate-middle-x">
-            <div class="w-100 d-flex justify-content-center mb-4">
-                <span id="spinner" class="spinner-border m-auto htmx-indicator" role="status"></span>
-            </div>
-        <div id="alerts">
-            {% include "messages.html" %}
-        </div> 
-        </aside>     
+            <aside class="position-fixed bottom-0 start-50 translate-middle-x">
+                <div class="w-100 d-flex justify-content-center mb-4">
+                    <span id="spinner" class="spinner-border m-auto htmx-indicator" role="status"></span>
+                </div>
+                <div id="alerts">
+                    {% include "messages.html" %}
+                </div> 
+            </aside>
+            {% block js %}{% endblock js %}     
+        </main>
     </body>
 </html>
