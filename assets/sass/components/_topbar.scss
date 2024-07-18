@@ -24,7 +24,8 @@
     }
 
     &__user:hover {
-        color: rgba($primary-clr-1, 0.9);
+        transition: filter 1s ease;
+        filter: brightness(150%);
     }
 
     &__upload-hidden {

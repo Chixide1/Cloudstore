@@ -99,7 +99,7 @@ body {
 .btn--accent {
   background-color: #583DA1;
   color: white;
-  transition: color 1s ease;
+  transition: background-color 1s ease;
   font-size: small; }
 
 .btn--accent:hover {
@@ -201,7 +201,8 @@ body {
     background-color: var(--bs-gray-600);
     color: var(--bs-dark); }
   .topbar__user:hover {
-    color: rgba(var(--bs-dark), 0.9); }
+    transition: filter 1s ease;
+    filter: brightness(150%); }
   .topbar__upload-hidden {
     width: 0.1px;
     height: 0.1px;
