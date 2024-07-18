@@ -1,4 +1,5 @@
 .sidebar {
+    // min-width: 130px;
 
     &__link-group {
         margin-top: 25%;
@@ -33,7 +34,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
 
     .sidebar {
 

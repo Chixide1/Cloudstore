@@ -54,9 +54,9 @@ def favourite_file(request: HttpRequest, file_id: int):
         return HttpResponseForbidden()
 
 @login_required(login_url="/login")
-def favourites(request: HttpRequest):
+def favourites(request: HttpRequest):   
     if not request.htmx:
-        return HttpResponseBadRequest()
+        return redirect('/')
     
     files = File.objects.filter(user=request.user).filter(favourite=1)
     return render(request, '_favourites.html', {"files": files[::-1]})
@@ -64,7 +64,7 @@ def favourites(request: HttpRequest):
 @login_required(login_url="/login")
 def all_files(request: HttpRequest):
     if not request.htmx:
-        return HttpResponseBadRequest()
+        return dashboard(request)
     
     files = File.objects.filter(user=request.user)
     return render(request, '_all-files.html', {"files": files[::-1]})
@@ -75,6 +75,9 @@ def search(request: HttpRequest):
         return HttpResponseBadRequest()
 
     query = request.POST.get('query')
+
+    # if not query:
+    #     return dashboard(request)
        
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
