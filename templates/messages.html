@@ -1,7 +1,6 @@
 {% for message in messages %}
-<div class="alert {{ message.tags }} alert-dismissible shadow fade 
-show d-flex align-items-center" role="alert">
-    <button type="button" class="close btn me-2" data-bs-dismiss="alert" aria-label="Close">
+<div class="alert {{ message.tags }} alert-dismissible shadow fade show d-flex align-items-center pt-1 pb-1 px-2" role="alert">
+    <button type="button" class="close btn me-2 p-1" data-bs-dismiss="alert" aria-label="Close">
         <i class="fa-solid fa-circle-xmark"></i>
     </button>
     <span>{{ message | safe }}</span>
