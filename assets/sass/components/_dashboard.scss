@@ -3,20 +3,11 @@
     color: white;
     transition: background-color 1s ease;
     font-size: small;
-}
 
-.btn--accent:hover {
-    background-color: rgba($accent-clr, 0.85);
-    color: white;
-}
-
-.page {
-    width: 100%;
-
-    &__nav {
-        min-width: 170px;
+    &:hover {
+        background-color: rgba($accent-clr, 0.85);
+        color: white;
     }
-
 }
 
 .file-grid {
@@ -50,17 +41,7 @@
 
 @media (max-width: 768px) {
 
-    .page {
-
-        &__nav {
-            max-width: 50px;
-            min-width: 50px;
-            padding: 0 !important;
-        }
-    }
-
     .file-grid {
         height: 95vh;
     }
-
 }

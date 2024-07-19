@@ -101,15 +101,9 @@ body {
   color: white;
   transition: background-color 1s ease;
   font-size: small; }
-
-.btn--accent:hover {
-  background-color: rgba(88, 61, 161, 0.85);
-  color: white; }
-
-.page {
-  width: 100%; }
-  .page__nav {
-    min-width: 170px; }
+  .btn--accent:hover {
+    background-color: rgba(88, 61, 161, 0.85);
+    color: white; }
 
 .file-grid {
   background-color: #F6F6F6;
@@ -134,54 +128,57 @@ body {
     height: 10vh; }
 
 @media (max-width: 768px) {
-  .page__nav {
-    max-width: 50px;
-    min-width: 50px;
-    padding: 0 !important; }
   .file-grid {
     height: 95vh; } }
 
-.sidebar__link-group {
-  margin-top: 25%; }
+.sidebar {
+  min-width: 170px;
+  transition: width 1s ease; }
+  .sidebar__link-group {
+    margin-top: 25%; }
+  .sidebar__link {
+    background-color: var(--bs-dark);
+    color: var(--bs-gray-500);
+    padding: 1rem;
+    transition: color 1.5s ease; }
+  .sidebar__link:hover {
+    color: white; }
+  .sidebar__link--active {
+    background-color: #583DA1 !important;
+    color: white !important;
+    transition: background-color 1.5s ease; }
+  .sidebar__logo i {
+    color: #583DA1; }
 
-.sidebar__link {
-  background-color: var(--bs-dark);
-  color: var(--bs-gray-600);
-  padding: 1rem;
-  transition: color 1.5s ease; }
-
-.sidebar__link:hover {
-  color: white; }
-
-.sidebar__link--active {
-  background-color: #583DA1 !important;
-  color: white !important;
-  transition: background-color 1.5s ease; }
-
-.sidebar__quota {
+.storage {
   padding: 10px;
   height: 30%;
   background-color: var(--bs-gray-800);
   margin-top: auto; }
-
-.sidebar__logo i {
-  color: #583DA1; }
+  .storage__bar {
+    height: 10px; }
+  .storage__progress {
+    background-color: #583DA1; }
+  .storage__amount {
+    color: var(--bs-gray-500); }
 
 @media (max-width: 768px) {
-  .sidebar__link {
-    padding: 10px 15px; }
-  .sidebar__link--active {
-    background-color: inherit !important;
-    border-left: 2.5px solid #583DA1;
-    border-radius: 0px !important;
-    color: #583DA1 !important; }
-  .sidebar__quota {
-    display: none; }
-  .sidebar span {
-    display: none; }
-  .sidebar * {
-    width: fit-content !important; }
-  .sidebar__quota {
+  .sidebar {
+    max-width: 50px;
+    min-width: 50px;
+    padding: 0 !important; }
+    .sidebar__link {
+      padding: 10px 15px; }
+    .sidebar__link--active {
+      background-color: inherit !important;
+      border-left: 2.5px solid #583DA1;
+      border-radius: 0px !important;
+      color: #583DA1 !important; }
+    .sidebar span {
+      display: none; }
+    .sidebar * {
+      width: fit-content !important; }
+  .storage {
     display: none; } }
 
 .topbar {

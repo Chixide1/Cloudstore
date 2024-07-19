@@ -10,12 +10,13 @@ from django.contrib import messages
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
     files = File.objects.filter(user=request.user)
+    # files_json = list(File.objects.filter(user=request.user).values())    
 
     storage_used = 0
     for file in files:
         storage_used += int(file.size)
 
-    context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage_used': storage_used }
+    context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage_used': storage_used}
     return render(request, 'dashboard.html', context)
 
 @login_required(login_url="/login")

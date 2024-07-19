@@ -1,5 +1,6 @@
 .sidebar {
-    // min-width: 130px;
+    min-width: 170px;
+    transition: width 1s ease;
 
     &__link-group {
         margin-top: 25%;
@@ -7,7 +8,7 @@
 
     &__link {
         background-color: $primary-clr-1;
-        color: $secondary-clr-1;
+        color: var(--bs-gray-500);
         padding: 1rem;
         transition: color 1.5s ease;
     }
@@ -22,21 +23,36 @@
         transition: background-color 1.5s ease;
     }
 
-    &__quota {
-        padding: 10px;
-        height: 30%;
-        background-color: $primary-clr-3;
-        margin-top: auto;
-    }
-
     &__logo i {
         color: $accent-clr;
+    }
+}
+
+.storage {
+    padding: 10px;
+    height: 30%;
+    background-color: $primary-clr-3;
+    margin-top: auto;
+
+    &__bar {
+        height: 10px;
+    }
+
+    &__progress {
+        background-color: $accent-clr;
+    }
+
+    &__amount {
+        color: var(--bs-gray-500);
     }
 }
 
 @media (max-width: 768px) {
 
     .sidebar {
+        max-width: 50px;
+        min-width: 50px;
+        padding: 0 !important;
 
         &__link {
             padding: 10px 15px;
@@ -49,10 +65,6 @@
             color: $accent-clr !important;
         }
 
-        &__quota {
-            display: none;
-        }
-
         span {
             display: none;
         }
@@ -60,9 +72,9 @@
         * {
             width: fit-content !important;
         }
+    }
 
-        &__quota {
-            display: none;
-        }
+    .storage {
+        display: none;
     }
 }
