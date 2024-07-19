@@ -1,4 +1,4 @@
-{{ storage_used|json_script:"storage_used" }}
+{{ storage|json_script:"storage" }}
 <script>
     highlight_navlink();
     add_upload();
@@ -20,12 +20,16 @@
     }
 
     function storage_bar(){
-        const quota = 1073741824
-        const storage_used = document.querySelector('#storage_used').textContent
-        const percentage = Math.min((storage_used / quota) * 100, 100);
+        let storage = JSON.parse(document.querySelector('#storage').textContent)
+        const quota = storage.quota
+        let used = storage.used
+        let percentage = Math.min((used / quota) * 100, 100);
 
-        const bar = document.querySelector('#progress-bar')
+        let bar = document.querySelector('#progress-bar')
         bar.style.width = `${percentage}%`
-        // console.log(bar.style.width)
     }
+
+    htmx.onLoad(function(el){
+        storage_bar()
+    })
 </script>

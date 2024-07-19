@@ -9,6 +9,8 @@ from .forms import UploadForm, SearchForm
 from django.contrib import messages
 from django.core.files.storage import default_storage
 
+quota = 1000000000
+
 # Create your views here.
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
@@ -19,7 +21,7 @@ def dashboard(request: HttpRequest):
     for file in files:
         storage_used += int(file.size)
 
-    context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage_used': storage_used}
+    context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage': {'used': storage_used, 'quota': quota}}
     return render(request, 'dashboard.html', context)
 
 @login_required(login_url="/login")
@@ -27,8 +29,18 @@ def upload_file(request: HttpRequest):
     if not request.htmx and not request.method == 'POST' and not request.FILES['file']:
         messages.warning(request, "There was an error when trying to upload the file!")
         return dashboard(request)
-    
+
     data =  request.FILES['file']
+    files = File.objects.filter(user=request.user)
+
+    storage_used = 0
+    for file in files:
+        storage_used += int(file.size)
+
+    if data.size + storage_used > quota:
+        messages.error(request, "Couldn't upload as storage quota would be exceeded!")
+        return dashboard(request)
+
     actual_name = data.name
     data.name = str(uuid4())
     File.objects.create(data=data, name=actual_name, size=data.size, type=data.content_type , user=request.user)
