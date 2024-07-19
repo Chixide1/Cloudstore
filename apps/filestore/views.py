@@ -1,7 +1,7 @@
 from pathlib import Path
 from time import sleep
 from uuid import UUID, uuid4
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import File
@@ -9,7 +9,8 @@ from .forms import UploadForm, SearchForm
 from django.contrib import messages
 from django.core.files.storage import default_storage
 
-quota = 1000000000
+#Global Variables
+quota = 1073741824
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -98,5 +99,16 @@ def download_file(request: HttpRequest, file_id: int, access_key = ''):
             response = HttpResponse(f.read(), content_type=file.type)
             response['Content-Disposition'] = f"attachment; filename={file.name}"
             return response
+    else:
+        return HttpResponseForbidden()
+    
+def delete_file(request: HttpRequest, file_id: int):
+    if request.method != "DELETE":
+        return HttpResponseNotAllowed(["DELETE"])
+    
+    file = File.objects.get(pk=file_id)
+    if request.user == file.user:
+        file.delete()
+        return dashboard(request)
     else:
         return HttpResponseForbidden()
