@@ -40,7 +40,8 @@ filestorepatterns = [
     path("favourite_file/<int:file_id>", filestore.favourite_file, name='favourite_file'),
     path("favourites/", filestore.favourites, name='favourites'),
     path("all_files/", filestore.all_files, name='all_files'),
-    path("search/", filestore.search, name='search')
+    path("search/", filestore.search, name='search'),
+    path("download_file/<int:file_id>", filestore.download_file, {'access_key': ''} , name='download_file')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

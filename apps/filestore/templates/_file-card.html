@@ -12,10 +12,10 @@
                         <i class="fa-solid fa-circle-info"></i>
                         <span class="ps-2">Details</span>
                     </button>
-                    <button type="submit" class="dropdown-item" style="font-size: small;">
+                    <a href="{% url 'download_file' file.id %}" type="button" class="dropdown-item" style="font-size: small;">
                         <i class="fa-solid fa-cloud-arrow-down"></i>
                         <span class="ps-2">Download</span>
-                    </button>
+                    </a>
                     <button type="submit" class="dropdown-item" style="font-size: small;">
                         <i class="fa-solid fa-users"></i>
                         <span class="ps-2">Share</span>                       

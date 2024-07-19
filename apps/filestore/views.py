@@ -1,10 +1,13 @@
+from pathlib import Path
 from time import sleep
+from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import File
 from .forms import UploadForm, SearchForm
 from django.contrib import messages
+from django.core.files.storage import default_storage
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -25,24 +28,12 @@ def upload_file(request: HttpRequest):
         messages.warning(request, "There was an error when trying to upload the file!")
         return dashboard(request)
     
-
     data =  request.FILES['file']
-    File.objects.create(data=data, name=data.name, size=data.size, user=request.user)
+    actual_name = data.name
+    data.name = str(uuid4())
+    File.objects.create(data=data, name=actual_name, size=data.size, type=data.content_type , user=request.user)
     messages.success(request, "File uploaded successfully")
     return dashboard(request)
-    #     return HttpResponse("""
-    #         <div class="alert alert-success alert-dismissible fade show" role="alert">
-    #             <i class="fa-solid fa-circle-check"></i><span class="ps-2">File uploaded successfully.</span>
-    #             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    #         </div>
-    #     """)
-    # else:
-    #     return HttpResponse("""
-    #         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    #             <i class="fa-solid fa-triangle-exclamation"></i><span class="ps-2">Could not upload file.</span>
-    #             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    #         </div>
-    #     """)
     
 @login_required(login_url="/login")
 def favourite_file(request: HttpRequest, file_id: int):
@@ -86,3 +77,14 @@ def search(request: HttpRequest):
        
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
+
+def download_file(request: HttpRequest, file_id: int, access_key = ''):
+    file = File.objects.get(pk=file_id)
+    
+    if file.user == request.user:
+        with file.data as f:
+            response = HttpResponse(f.read(), content_type=file.type)
+            response['Content-Disposition'] = f"attachment; filename={file.name}"
+            return response
+    else:
+        return HttpResponseForbidden()

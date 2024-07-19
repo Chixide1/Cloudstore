@@ -7,7 +7,8 @@ class File(models.Model):
         return str(self.name)
     
     data = models.FileField()
-    name = models.CharField(max_length=200, default="")
+    name = models.CharField(max_length=200, default='')
+    type = models.CharField(max_length=200, default='') 
     date_created = models.DateTimeField(auto_now_add=True)
     size = models.IntegerField(default=0)
     favourite = models.BooleanField(default=False)
