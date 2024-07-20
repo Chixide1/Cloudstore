@@ -41,7 +41,8 @@ filestorepatterns = [
     path("favourites/", filestore.favourites, name='favourites'),
     path("all_files/", filestore.all_files, name='all_files'),
     path("search/", filestore.search, name='search'),
-    path("download_file/<int:file_id>", filestore.download_file, {'access_key': ''} , name='download_file'),
+    path("download_file/<int:file_id>", filestore.download_file, name='download_file'),
+    path("download_file/<int:file_id>/<uuid:access_key>", filestore.download_file, name='download_file'),
     path("delete_file/<int:file_id>", filestore.delete_file, name='delete_file')
 ]
 

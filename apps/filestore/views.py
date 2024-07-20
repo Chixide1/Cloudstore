@@ -91,9 +91,11 @@ def search(request: HttpRequest):
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
 
-def download_file(request: HttpRequest, file_id: int, access_key = ''):
+def download_file(request: HttpRequest, file_id: int, access_key: UUID):
     file = File.objects.get(pk=file_id)
     
+    print(access_key)
+
     if file.user == request.user:
         with file.data as f:
             response = HttpResponse(f.read(), content_type=file.type)
