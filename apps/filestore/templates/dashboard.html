@@ -14,24 +14,15 @@
     </div>
 </div>
 <!-- Modals -->
-<div class="modal fade" id="share" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+        <div class="modal-content" id="share-modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Sharing</h1>
-          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body"></div>
+        <div class="modal-footer"></div>
         </div>
-        <div class="modal-footer justify-content-between">
-            <div class="form-check form-switch">
-                <input class="form-check-input share-modal__switch" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Share</label>
-            </div>
-          <button type="button" class="btn btn--accent">Understood</button>
-        </div>
-      </div>
     </div>
   </div>
 {% endblock content %}

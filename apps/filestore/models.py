@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import uuid
 # Create your models here.
 
 class File(models.Model):
@@ -18,7 +19,7 @@ class Shared(models.Model):
     def __str__(self) -> str:
         return str(self.file)
     
-    url = models.URLField(null=True)
+    access_key = models.UUIDField(default=uuid.uuid4, editable=False)
     access_count = models.IntegerField(default=0)
     file = models.ForeignKey(File, on_delete=models.CASCADE,default=None,null=True)
     

@@ -1,13 +1,12 @@
-from pathlib import Path
 from time import sleep
 from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import File
+from .models import File, Shared
 from .forms import UploadForm, SearchForm
 from django.contrib import messages
-from django.core.files.storage import default_storage
+from django.views.decorators.http import require_http_methods
 
 #Global Variables
 quota = 1073741824
@@ -91,19 +90,19 @@ def search(request: HttpRequest):
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
 
-def download_file(request: HttpRequest, file_id: int, access_key: UUID):
+def download_file(request: HttpRequest, file_id: int, key: UUID):
     file = File.objects.get(pk=file_id)
-    
-    print(access_key)
+    shared = Shared.objects.filter(file__id=file_id).first()
 
-    if file.user == request.user:
+    if file.user == request.user or key == shared.access_key:
         with file.data as f:
             response = HttpResponse(f.read(), content_type=file.type)
             response['Content-Disposition'] = f"attachment; filename={file.name}"
             return response
     else:
         return HttpResponseForbidden()
-    
+
+@login_required(login_url="/login")    
 def delete_file(request: HttpRequest, file_id: int):
     if request.method != "DELETE":
         return HttpResponseNotAllowed(["DELETE"])
@@ -112,5 +111,30 @@ def delete_file(request: HttpRequest, file_id: int):
     if request.user == file.user:
         file.delete()
         return dashboard(request)
+    else:
+        return HttpResponseForbidden()
+
+@require_http_methods(["GET"])  
+@login_required(login_url="/login")    
+def share_status(request: HttpRequest, file_id: int):
+    shared = Shared.objects.filter(file__id=file_id).first()
+    base_url = request.get_host()
+
+    if request.user == (File.objects.get(pk=file_id)).user: 
+        return render(request, "_share-modal.html", {'shared': shared, 'base_url': base_url})
+    else:
+        return HttpResponseForbidden()
+
+@require_http_methods(["GET"])  
+@login_required(login_url="/login")    
+def share_file(request: HttpRequest, file_id: int):
+    shared = Shared.objects.filter(file__id=file_id).first()
+
+    if shared and request.user == (File.objects.get(pk=file_id)).user: 
+        shared.delete()
+        return share_status(request, file_id)
+    elif not shared and request.user == (File.objects.get(pk=file_id)).user:
+        Shared.objects.create(file__id=file_id)
+        return share_status(request, file_id)
     else:
         return HttpResponseForbidden()

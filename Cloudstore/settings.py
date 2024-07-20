@@ -154,7 +154,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/uploads/'
 
 # Allows POST requests
-CSRF_TRUSTED_ORIGINS = ['https://chik-fileshare-webapp.azureCloudstores.net','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://cloudstore.chikdoestech.xyz','https://*.127.0.0.1']
 
 
 MESSAGE_TAGS = {

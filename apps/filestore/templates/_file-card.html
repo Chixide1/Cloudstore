@@ -16,11 +16,13 @@
                         <i class="fa-solid fa-cloud-arrow-down"></i>
                         <span class="ps-2">Download</span>
                     </a>
-                    <button type="button" class="dropdown-item" style="font-size: small;" data-bs-toggle="modal" data-bs-target="#share">
+                    <a href="{% url 'share_status' file.id %}" hx-get="{% url 'share_status' file.id %}" hx-target="#share-modal-content" 
+                    hx-swap="outerHTML" class="dropdown-item" style="font-size: small;" data-bs-toggle="modal" data-bs-target="#share-modal">
                         <i class="fa-solid fa-users"></i>
                         <span class="ps-2">Share</span>                       
-                    </button>
-                    <a href="{% url 'delete_file' file.id %}" hx-delete="{% url 'delete_file' file.id %}" hx-target="#main" hx-confirm="Are you sure you want to delete this file?" class="dropdown-item" style="font-size: small;">
+                    </a>
+                    <a href="{% url 'delete_file' file.id %}" hx-delete="{% url 'delete_file' file.id %}" hx-target="#main" 
+                    hx-confirm="Are you sure you want to delete this file?" class="dropdown-item" style="font-size: small;">
                         <i class="fa-solid fa-dumpster-fire"></i>
                         <span class="ps-2">Delete</span>
                     </a>
