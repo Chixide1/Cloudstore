@@ -12,10 +12,10 @@ from django.views.decorators.http import require_http_methods
 quota = 1073741824
 
 # Create your views here.
+@require_http_methods(["GET"])
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
-    files = File.objects.filter(user=request.user)
-    # files_json = list(File.objects.filter(user=request.user).values())    
+    files = File.objects.filter(user=request.user)   
 
     storage_used = 0
     for file in files:
@@ -24,9 +24,10 @@ def dashboard(request: HttpRequest):
     context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage': {'used': storage_used, 'quota': quota}}
     return render(request, 'dashboard.html', context)
 
+@require_http_methods(["POST"])
 @login_required(login_url="/login")
 def upload_file(request: HttpRequest):
-    if not request.htmx and not request.method == 'POST' and not request.FILES['file']:
+    if not request.htmx and not request.FILES['file']:
         messages.warning(request, "There was an error when trying to upload the file!")
         return dashboard(request)
 
@@ -46,7 +47,8 @@ def upload_file(request: HttpRequest):
     File.objects.create(data=data, name=actual_name, size=data.size, type=data.content_type , user=request.user)
     messages.success(request, "File uploaded successfully")
     return dashboard(request)
-    
+
+@require_http_methods(["GET"])   
 @login_required(login_url="/login")
 def favourite_file(request: HttpRequest, file_id: int):
     if not request.htmx:
@@ -61,6 +63,7 @@ def favourite_file(request: HttpRequest, file_id: int):
     else:
         return HttpResponseForbidden()
 
+@require_http_methods(["GET"])
 @login_required(login_url="/login")
 def favourites(request: HttpRequest):   
     if not request.htmx:
@@ -69,6 +72,7 @@ def favourites(request: HttpRequest):
     files = File.objects.filter(user=request.user).filter(favourite=1)
     return render(request, '_favourites.html', {"files": files[::-1]})
 
+@require_http_methods(["GET"])
 @login_required(login_url="/login")
 def all_files(request: HttpRequest):
     if not request.htmx:
@@ -77,9 +81,10 @@ def all_files(request: HttpRequest):
     files = File.objects.filter(user=request.user)
     return render(request, '_all-files.html', {"files": files[::-1]})
 
+@require_http_methods(["POST"]) 
 @login_required(login_url="/login")
 def search(request: HttpRequest):
-    if not request.htmx and not request.POST:
+    if not request.htmx:
         return HttpResponseBadRequest()
 
     query = request.POST.get('query')
@@ -90,6 +95,7 @@ def search(request: HttpRequest):
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
 
+@require_http_methods(["GET"])
 def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     file = File.objects.get(pk=file_id)
     shared = Shared.objects.filter(file__id=file_id).first()
@@ -110,10 +116,11 @@ def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     else:
         return HttpResponseForbidden()
 
+@require_http_methods(["DELETE"])
 @login_required(login_url="/login")    
 def delete_file(request: HttpRequest, file_id: int):
-    if request.method != "DELETE":
-        return HttpResponseNotAllowed(["DELETE"])
+    if not request.htmx:
+        return HttpResponseForbidden()
     
     file = File.objects.get(pk=file_id)
     if request.user == file.user:
@@ -150,11 +157,20 @@ def share_file(request: HttpRequest, file_id: int):
     else:
         return HttpResponseForbidden()
 
+@require_http_methods(["GET"])
 @login_required(login_url="/login")
 def shared(request: HttpRequest):   
     if not request.htmx:
         return redirect('/')
 
     shared = File.objects.filter(id__in=Shared.objects.values_list('file__id', flat=True)).filter(user=request.user)
-    
     return render(request, '_shared.html', {"files": shared[::-1]})
+
+@require_http_methods(["GET"])
+@login_required(login_url="/login")
+def details(request: HttpRequest, file_id: int):
+    if not request.htmx:
+        return HttpResponseForbidden()
+    
+    file = File.objects.get(pk=file_id)
+    return render(request, '_details-panel.html', {'file': file})

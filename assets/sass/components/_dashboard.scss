@@ -78,6 +78,51 @@
     }
 }
 
+.details-panel {
+    
+    &__preview {
+        display: block;
+        height: auto;
+        width: auto;
+        border-radius: 20px;
+        border: 1px solid var(--bs-gray-400);
+        max-height: 40vh;
+        max-width: 100%;
+        margin-inline: auto;
+    }
+
+    &__header {
+        background-color: $background-color-1;
+        border-bottom: 1px solid var(--bs-gray-400);
+    }
+
+    &__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 75%;
+        font-size: medium;
+        font-weight: 550;
+    }
+
+    &__icon {
+        
+    }
+
+    &__info {
+        border-top: 1px solid var(--bs-gray-400);
+        border-bottom: 1px solid var(--bs-gray-400);
+
+        dt {
+            font-weight: 500;
+        }
+
+        dd {
+            color: $secondary-clr-1;
+        }
+    }
+}
+
 @media (max-width: 768px) {
 
     .file-grid {
