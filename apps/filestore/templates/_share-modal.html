@@ -1,22 +1,45 @@
 <div class="modal-content" id="share-modal-content">
     <div class="modal-header">
-      <h1 class="modal-title fs-5" id="staticBackdropLabel">Sharing</h1>
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Share File</h1>
       <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div class="modal-body">
-        <p class="m-0">
+    <div class="modal-body">      
         {% if shared %}
-            {{ base_url }}{% url 'download_file' shared.file.id %}/{{ shared.access_key }}
+        <div class="input-group">
+            <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill text-bg-secondary 
+            z-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+            data-bs-title="This is the number of times the link has been accessed">
+                {{ shared.access_count }}
+            </span>
+            <p class="m-0 share-modal__link form-control">{{ base_url }}{% url 'download_file' shared.file.id %}/{{ shared.access_key }}</p>
+            <div class="p-0 input-group-text">
+                <button class="btn btn--accent share-modal__btn">
+                    <i class="fa-solid fa-link"></i><span class="ps-1">Copy</span>
+                </button>
+            </div>
+        </div>
         {% else %}
-            This file hasn't been shared yet...
+            <p class="m-0">This file hasn't been shared yet.</p>
         {% endif %}
-        </p>
     </div>
     <div class="modal-footer justify-content-center">
         <div class="form-check form-switch">
-            <input class="form-check-input share-modal__switch" type="checkbox" role="switch" 
+            <input hx-get="{% url 'share_file' file.id %}" hx-trigger="change" 
+            hx-target="#share-modal-content"
+            class="form-check-input share-modal__switch" id="share-switch" type="checkbox" 
+            role="switch" 
             {% if shared %} checked {% endif %}>
-            <label class="form-check-label" for="flexSwitchCheckChecked">Share</label>
+            <label class="form-check-label" for="share-switch">{% if shared %}Sharing...{% else %} Not Sharing...{% endif %}</label>
         </div>
     </div>
 </div>
+<script>
+    function load_tooltip(){
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    }
+
+    htmx.onLoad(function(el){
+        load_tooltip()
+    })
+</script>

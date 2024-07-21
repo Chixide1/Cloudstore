@@ -105,6 +105,10 @@ body {
     background-color: rgba(88, 61, 161, 0.85);
     color: white; }
 
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-gray-700);
+  --bs-tooltip-color: var(--bs-white); }
+
 .share-modal__switch:focus {
   box-shadow: 0 0 0 0.25rem rgba(88, 61, 161, 0.25);
   border-color: #583DA1;
@@ -115,6 +119,19 @@ body {
   color: white;
   border-color: #583DA1;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); }
+
+.share-modal__link {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: small;
+  height: fit-content; }
+
+.share-modal__btn {
+  font-size: small;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset; }
 
 .file-grid {
   background-color: #F6F6F6;

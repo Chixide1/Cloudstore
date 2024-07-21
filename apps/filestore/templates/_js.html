@@ -3,7 +3,11 @@
     highlight_navlink();
     add_upload();
     storage_bar();
-    add_csrf()
+    add_csrf();
+
+    htmx.onLoad(function(el){
+        storage_bar()
+    })
 
     function highlight_navlink(){
         let links = document.querySelectorAll('.sidebar__link')
@@ -30,13 +34,10 @@
         bar.style.width = `${percentage}%`
     }
 
-    htmx.onLoad(function(el){
-        storage_bar()
-    })
-
     function add_csrf(){
         document.body.addEventListener('htmx:configRequest', (event) => {
             event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'
         })
     }
+
 </script>

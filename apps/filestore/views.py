@@ -90,11 +90,19 @@ def search(request: HttpRequest):
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
 
-def download_file(request: HttpRequest, file_id: int, key: UUID):
+def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     file = File.objects.get(pk=file_id)
     shared = Shared.objects.filter(file__id=file_id).first()
 
-    if file.user == request.user or key == shared.access_key:
+    if file.user == request.user:
+        with file.data as f:
+            response = HttpResponse(f.read(), content_type=file.type)
+            response['Content-Disposition'] = f"attachment; filename={file.name}"
+            return response
+    elif key == shared.access_key:
+        shared.access_count += 1
+        shared.save()
+        print(key, "\n", shared.access_count)
         with file.data as f:
             response = HttpResponse(f.read(), content_type=file.type)
             response['Content-Disposition'] = f"attachment; filename={file.name}"
@@ -119,9 +127,10 @@ def delete_file(request: HttpRequest, file_id: int):
 def share_status(request: HttpRequest, file_id: int):
     shared = Shared.objects.filter(file__id=file_id).first()
     base_url = request.get_host()
+    file = File.objects.get(pk=file_id)
 
-    if request.user == (File.objects.get(pk=file_id)).user: 
-        return render(request, "_share-modal.html", {'shared': shared, 'base_url': base_url})
+    if request.user == file.user: 
+        return render(request, "_share-modal.html", {'shared': shared, 'base_url': base_url, 'file': file})
     else:
         return HttpResponseForbidden()
 
@@ -132,9 +141,11 @@ def share_file(request: HttpRequest, file_id: int):
 
     if shared and request.user == (File.objects.get(pk=file_id)).user: 
         shared.delete()
+        sleep(0.5)
         return share_status(request, file_id)
     elif not shared and request.user == (File.objects.get(pk=file_id)).user:
-        Shared.objects.create(file__id=file_id)
+        Shared.objects.create(file_id=file_id)
+        sleep(0.5)
         return share_status(request, file_id)
     else:
         return HttpResponseForbidden()

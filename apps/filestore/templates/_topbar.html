@@ -10,7 +10,7 @@
     </form> 
     <form class="input-group topbar__searchbar">
         {% csrf_token %}
-        <label class="input-group-text rounded-start"><i class="fa-solid fa-magnifying-glass text-secondary"></i></label>
+        <label for="searchInput" class="input-group-text rounded-start"><i class="fa-solid fa-magnifying-glass text-secondary"></i></label>
         {{ searchform.query }}
     </form>
     <div class="dropdown">
