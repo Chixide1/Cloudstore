@@ -10,7 +10,10 @@
             hx-swap="outerHTML" hx-push-url="true" class="sidebar__link nav-link rounded">
                 <i class="fa-solid fa-star"></i><span class="ps-2">Favourites</span>
             </a>
-            <a href="#" class="sidebar__link nav-link rounded"><i class="fa-solid fa-users"></i><span class="ps-2">Shared</span></a>
+            <a href="{% url 'shared' %}" hx-get="{% url 'shared' %}" hx-target="#content" 
+            hx-swap="outerHTML" hx-push-url="true" class="sidebar__link nav-link rounded">
+                <i class="fa-solid fa-users"></i><span class="ps-2">Shared</span>
+            </a>
         </nav>
         <div class="storage w-100 rounded">
             <p><i class="fa-solid fa-server"></i><span class="ps-2">Storage</span></p>

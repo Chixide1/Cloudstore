@@ -40,4 +40,18 @@
         })
     }
 
+    async function copy_link(){
+        var file_link = document.getElementById("file-link").innerHTML;
+        var txt = document.querySelector('#copy-txt')
+        try {
+            await navigator.clipboard.writeText(file_link);
+            txt.innerHTML = "Copied!"
+            await setTimeout(() => {
+                txt.innerHTML = "Copy"
+            }, 1000);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
+
 </script>

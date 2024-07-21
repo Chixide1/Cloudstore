@@ -11,10 +11,10 @@
             data-bs-title="This is the number of times the link has been accessed">
                 {{ shared.access_count }}
             </span>
-            <p class="m-0 share-modal__link form-control">{{ base_url }}{% url 'download_file' shared.file.id %}/{{ shared.access_key }}</p>
+            <p class="m-0 share-modal__link form-control" id="file-link">{{ base_url }}{% url 'download_file' shared.file.id %}/{{ shared.access_key }}</p>
             <div class="p-0 input-group-text">
-                <button class="btn btn--accent share-modal__btn">
-                    <i class="fa-solid fa-link"></i><span class="ps-1">Copy</span>
+                <button class="btn btn--accent share-modal__btn" onclick="copy_link()">
+                    <i class="fa-solid fa-link"></i><span id="copy-txt" class="ps-1">Copy</span>
                 </button>
             </div>
         </div>

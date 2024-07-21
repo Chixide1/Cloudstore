@@ -149,3 +149,12 @@ def share_file(request: HttpRequest, file_id: int):
         return share_status(request, file_id)
     else:
         return HttpResponseForbidden()
+
+@login_required(login_url="/login")
+def shared(request: HttpRequest):   
+    if not request.htmx:
+        return redirect('/')
+
+    shared = File.objects.filter(id__in=Shared.objects.values_list('file__id', flat=True)).filter(user=request.user)
+    
+    return render(request, '_shared.html', {"files": shared[::-1]})
