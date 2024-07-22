@@ -18,6 +18,11 @@
         }))
     }
 
+    function fav_file(element){
+        element.classList.toggle('fa-regular')
+        element.classList.toggle('fa-solid')
+    }
+
     function add_upload(){
         document.querySelector('#upload-btn').addEventListener('click', () => {
             document.querySelector('#upload-hidden').click();

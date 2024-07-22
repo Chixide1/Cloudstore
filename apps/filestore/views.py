@@ -12,7 +12,7 @@ from django.views.decorators.http import require_http_methods
 quota = 1073741824
 
 # Create your views here.
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
     files = File.objects.filter(user=request.user)   
@@ -24,7 +24,7 @@ def dashboard(request: HttpRequest):
     context = {"files": files[::-1], 'uploadform': UploadForm(), 'searchform': SearchForm(), 'storage': {'used': storage_used, 'quota': quota}}
     return render(request, 'dashboard.html', context)
 
-@require_http_methods(["POST"])
+@require_http_methods(['POST'])
 @login_required(login_url="/login")
 def upload_file(request: HttpRequest):
     if not request.htmx and not request.FILES['file']:
@@ -59,7 +59,7 @@ def favourite_file(request: HttpRequest, file_id: int):
     if file.user == request.user:
         file.favourite = not file.favourite
         file.save()
-        return render(request, "_file-card.html", {"file": file})
+        return HttpResponse(status=200)
     else:
         return HttpResponseForbidden()
 
