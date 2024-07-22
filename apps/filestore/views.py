@@ -148,11 +148,9 @@ def share_file(request: HttpRequest, file_id: int):
 
     if shared and request.user == (File.objects.get(pk=file_id)).user: 
         shared.delete()
-        sleep(0.5)
         return share_status(request, file_id)
     elif not shared and request.user == (File.objects.get(pk=file_id)).user:
         Shared.objects.create(file_id=file_id)
-        sleep(0.5)
         return share_status(request, file_id)
     else:
         return HttpResponseForbidden()
