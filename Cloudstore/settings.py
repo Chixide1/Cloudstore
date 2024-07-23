@@ -13,6 +13,11 @@ import os
 from django.contrib import messages
 from pathlib import Path
 import socket
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+ENV = os.getenv('ENV')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -170,5 +175,3 @@ CRISPY_ALLOWED_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
-
-X_FRAME_OPTIONS = "SAMEORIGIN"
