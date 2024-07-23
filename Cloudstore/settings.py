@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'apps.filestore.apps.FilestoreConfig',
-    'apps.users.apps.UsersConfig'
+    'apps.users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +170,5 @@ CRISPY_ALLOWED_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
+
+X_FRAME_OPTIONS = "SAMEORIGIN"

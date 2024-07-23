@@ -141,8 +141,8 @@ body {
   padding-inline: 20px;
   padding-bottom: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, auto));
-  grid-template-rows: min-content auto;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-rows: min-content min-content;
   gap: 1em;
   max-width: 100%; }
   .file-grid::-webkit-scrollbar {
@@ -156,44 +156,19 @@ body {
     background-color: #F6F6F6;
     height: 10vh; }
 
-.details-panel__preview {
-  display: block;
-  height: 100%;
-  width: 100%;
-  border-radius: 20px;
-  border: 1px solid var(--bs-gray-400);
-  max-height: 40vh;
-  max-width: 100%;
-  margin-inline: auto;
-  object-fit: cover; }
-
-.details-panel__title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 75%;
-  font-size: medium;
-  font-weight: 550; }
-
-.details-panel__info dt {
-  font-weight: 500; }
-
-.details-panel__info dd {
-  color: var(--bs-gray-600); }
-
 #details-panel-content {
   overflow-y: auto;
   padding-inline: 5%; }
 
 @media (max-width: 768px) {
   .file-grid {
-    height: 95vh; } }
+    height: 90vh; } }
 
 .sidebar {
   min-width: 170px;
   transition: width 1s ease; }
   .sidebar__link-group {
-    margin-top: 25%; }
+    margin-top: 55%; }
   .sidebar__link {
     background-color: var(--bs-dark);
     color: var(--bs-gray-500);
@@ -268,7 +243,7 @@ body {
 
 @media (max-width: 768px) {
   .topbar {
-    height: 3rem; }
+    height: 10vh; }
     .topbar__upload-btn {
       font-size: smaller;
       padding: 5px;

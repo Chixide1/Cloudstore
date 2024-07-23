@@ -7,6 +7,7 @@ from .models import File, Shared
 from .forms import UploadForm, SearchForm
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 #Global Variables
 quota = 1073741824

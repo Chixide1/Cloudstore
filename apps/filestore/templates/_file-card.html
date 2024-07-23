@@ -8,12 +8,6 @@
             type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu" style="width: fit-content;">
                 <li>
-                    <a href="{% url 'details' file.id %}" hx-get="{% url 'details' file.id %}" 
-                    hx-target="#details-panel-content" hx-swap="outerHTML" data-bs-toggle="offcanvas" 
-                    data-bs-target="#details-panel" class="dropdown-item" style="font-size: small;">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span class="ps-2">Details</span>
-                    </a>
                     <a href="{% url 'download_file' file.id %}" class="dropdown-item" style="font-size: small;">
                         <i class="fa-solid fa-cloud-arrow-down"></i>
                         <span class="ps-2">Download</span>
@@ -33,7 +27,7 @@
         </div>
         <i class="fa-solid fa-file-lines file-card__img"></i>
         <h5 class="file-card__title">{{ file.name }}</h5>
-        <span class="file-card__date">{{ file.date_created | date }}</span>
+        <span class="file-card__date">{{ file.date_created }}</span>
     </div>
     <div class="file-card__size">
         <span class="">{{ file.size | filesizeformat }}</span>
