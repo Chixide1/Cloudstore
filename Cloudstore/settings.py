@@ -19,6 +19,9 @@ from dotenv import load_dotenv
 load_dotenv()
 ENV = os.getenv('ENV')
 
+if not ENV:
+    ENV = 'prod'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,12 +33,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vkln%*uk1t)wo#^-@)hf+gwwp=zgbtiop@8#rt95v%9rxlfk_t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if socket.gethostname() in ["ChikLaptop", "LAP01347"]:
+# if socket.gethostname() in ["ChikLaptop", "LAP01347"]:
+#     DEBUG = True
+# else:
+#     DEBUG = False
+
+if ENV == 'dev':
     DEBUG = True
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['*.chikdoestech.xyz', 'localhost', '127.0.0.1']
+if ENV == 'dev':
+    ALLOWED_HOSTS = ['127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['*.chikdoestech.xyz']
 
 
 # Application definition
@@ -129,7 +140,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -154,14 +164,16 @@ STATICFILES_FINDERS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Storage Handling
-
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/uploads/'
 
 # Allows POST requests
-CSRF_TRUSTED_ORIGINS = ['https://cloudstore.chikdoestech.xyz','https://*.127.0.0.1']
+if DEBUG == 'dev':
+    CSRF_TRUSTED_ORIGINS = ['https://*.chikdoestech.xyz']
+else:
+    CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1']
 
-
+# Alert messages in templates
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -170,8 +182,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+# Form formatting
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACK = "bootstrap5"
 
+#Login and Logout URL
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
