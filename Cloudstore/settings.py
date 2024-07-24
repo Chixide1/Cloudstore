@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 ENV = os.getenv('ENV')
 
-if not ENV:
+if ENV != 'dev':
     ENV = 'prod'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
