@@ -43,11 +43,7 @@ if ENV == 'dev':
 else:
     DEBUG = False
 
-if ENV == 'dev':
-    ALLOWED_HOSTS = ['127.0.0.1']
-else:
-    ALLOWED_HOSTS = ['*.chikdoestech.xyz']
-
+ALLOWED_HOSTS = ['*.chikdoestech.xyz', '127.0.0.1', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
