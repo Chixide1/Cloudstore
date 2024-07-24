@@ -165,9 +165,9 @@ MEDIA_URL = '/uploads/'
 
 # Allows POST requests
 if DEBUG == 'dev':
-    CSRF_TRUSTED_ORIGINS = ['https://*.chikdoestech.xyz']
-else:
     CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1']
+else:
+    CSRF_TRUSTED_ORIGINS = ['https://*.chikdoestech.xyz']
 
 # Alert messages in templates
 MESSAGE_TAGS = {
