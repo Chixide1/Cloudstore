@@ -103,6 +103,12 @@ body {
   background-color: #583DA1;
   max-width: 500px; }
 
+.alert-block {
+  padding: 5px;
+  font-size: 11px; }
+  .alert-block ul {
+    padding-left: 15px; }
+
 .btn--accent {
   background-color: #583DA1;
   color: white;
