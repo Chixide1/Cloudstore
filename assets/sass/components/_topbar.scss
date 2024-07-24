@@ -1,6 +1,7 @@
 .topbar {
     gap: 1rem;
     height: 10vh;
+    height: 10dvh;
     border-bottom: 1px solid $primary-clr-2;
 
     &__searchbar{
@@ -41,7 +42,8 @@
 @media (max-width: 768px){
 
     .topbar {
-        height: 10vh;
+        height: 7.5vh;
+        height: 7.5dvh;
 
         &__upload-btn {
             font-size: smaller;
