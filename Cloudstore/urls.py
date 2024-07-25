@@ -47,7 +47,6 @@ filestorepatterns = [
     path("share_status/<int:file_id>", filestore.share_status, name='share_status'),
     path("share_file/<int:file_id>", filestore.share_file, name='share_file'),
     path("shared", filestore.shared, name='shared'),
-    path("details/<int:file_id>", filestore.details, name='details'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -1,4 +1,4 @@
-from time import sleep
+from urllib.parse import urlparse
 from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
@@ -13,7 +13,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 quota = 1073741824
 
 # Create your views here.
-@require_http_methods(["GET", "POST", "DELETE"])
+@require_http_methods(["GET"])
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
     files = File.objects.filter(user=request.user)   
@@ -30,6 +30,7 @@ def dashboard(request: HttpRequest):
 def upload_file(request: HttpRequest):
     if not request.htmx and not request.FILES['file']:
         messages.warning(request, "There was an error when trying to upload the file!")
+        request.method = "GET"
         return dashboard(request)
 
     data =  request.FILES['file']
@@ -38,6 +39,8 @@ def upload_file(request: HttpRequest):
     storage_used = 0
     for file in files:
         storage_used += int(file.size)
+
+    request.method = "GET"
 
     if data.size + storage_used > quota:
         messages.error(request, "Couldn't upload as storage quota would be exceeded!")
@@ -89,9 +92,10 @@ def search(request: HttpRequest):
         return HttpResponseBadRequest()
 
     query = request.POST.get('query')
+    request.method = "GET"
 
-    # if not query:
-    #     return dashboard(request)
+    if not query:
+        return getCurrentPath(request)
        
     files = File.objects.filter(user=request.user).filter(name__icontains=query)
     return render(request, '_search.html', {"files": files[::-1]})
@@ -126,6 +130,7 @@ def delete_file(request: HttpRequest, file_id: int):
     file = File.objects.get(pk=file_id)
     if request.user == file.user:
         file.delete()
+        request.method = "GET"
         return dashboard(request)
     else:
         return HttpResponseForbidden()
@@ -165,11 +170,12 @@ def shared(request: HttpRequest):
     shared = File.objects.filter(id__in=Shared.objects.values_list('file__id', flat=True)).filter(user=request.user)
     return render(request, '_shared.html', {"files": shared[::-1]})
 
-@require_http_methods(["GET"])
-@login_required(login_url="/login")
-def details(request: HttpRequest, file_id: int):
-    if not request.htmx:
-        return HttpResponseForbidden()
-    
-    file = File.objects.get(pk=file_id)
-    return render(request, '_details-panel.html', {'file': file})
+#Utils
+def getCurrentPath(request: HttpRequest) -> HttpResponse:
+    currentPath = urlparse(request.headers.get("Hx-Current-Url"))
+    if currentPath.path == '/favourites/':         
+        return favourites(request)
+    elif currentPath.path == '/shared/':
+        return shared(request)
+    else:
+        return all_files(request)
