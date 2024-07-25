@@ -13,7 +13,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 quota = 1073741824
 
 # Create your views here.
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["GET", "POST", "DELETE"])
 @login_required(login_url="/login")
 def dashboard(request: HttpRequest):
     files = File.objects.filter(user=request.user)   
