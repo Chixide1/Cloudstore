@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from .utils import getCurrentPath, quota
 from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
@@ -7,10 +7,6 @@ from .models import File, Shared
 from .forms import UploadForm, SearchForm
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.clickjacking import xframe_options_exempt
-
-#Global Variables
-quota = 1073741824
 
 # Create your views here.
 @require_http_methods(["GET"])
@@ -169,13 +165,3 @@ def shared(request: HttpRequest):
 
     shared = File.objects.filter(id__in=Shared.objects.values_list('file__id', flat=True)).filter(user=request.user)
     return render(request, '_shared.html', {"files": shared[::-1]})
-
-#Utils
-def getCurrentPath(request: HttpRequest) -> HttpResponse:
-    currentPath = urlparse(request.headers.get("Hx-Current-Url"))
-    if currentPath.path == '/favourites/':         
-        return favourites(request)
-    elif currentPath.path == '/shared/':
-        return shared(request)
-    else:
-        return all_files(request)
