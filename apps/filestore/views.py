@@ -101,6 +101,9 @@ def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     file = File.objects.get(pk=file_id)
     shared = Shared.objects.filter(file__id=file_id).first()
 
+    if not shared:
+        return HttpResponseForbidden()
+
     if file.user == request.user:
         with file.data as f:
             response = HttpResponse(f.read(), content_type=file.type)
