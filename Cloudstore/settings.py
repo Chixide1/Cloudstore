@@ -164,7 +164,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/uploads/'
 
 # Allows POST requests
-if DEBUG == 'dev':
+if ENV == 'dev':
     CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1']
 else:
     CSRF_TRUSTED_ORIGINS = ['https://*.chikdoestech.xyz']
