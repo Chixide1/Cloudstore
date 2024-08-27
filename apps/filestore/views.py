@@ -1,6 +1,6 @@
-from .utils import getCurrentPath, quota
+from .utils import generate_chunks, getCurrentPath, quota
 from uuid import UUID, uuid4
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed, StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import File, Shared
@@ -102,10 +102,9 @@ def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     shared = Shared.objects.filter(file__id=file_id).first()
 
     if file.user == request.user:
-        with file.data as f:
-            response = HttpResponse(f.read(), content_type=file.type)
-            response['Content-Disposition'] = f"attachment; filename={file.name}"
-            return response
+        response = StreamingHttpResponse(generate_chunks(file.data), content_type=file.type)
+        response['Content-Disposition'] = f"attachment; filename={file.name}"
+        return response
     
     if not shared:
         return HttpResponseForbidden()
