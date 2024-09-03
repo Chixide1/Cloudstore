@@ -1,3 +1,7 @@
 {% extends '_all-files.html' %}
 
 {% block subtitle %}Favourites{% endblock subtitle %}
+{% block no_content %}
+<i class="fa-solid fa-star pe-2"></i>
+<span class="no-files__msg">You have no favourites...</span>
+{% endblock no_content %}

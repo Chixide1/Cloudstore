@@ -1,3 +1,4 @@
+{% if files %}
 <div id="content" class="file-grid">
     <div class="file-grid__upload w-100 d-flex align-items-end justify-content-between">
         <h4 class="m-0 file-grid__heading" style="font-weight: 500;">{% block subtitle %}All Files{% endblock subtitle %}</h4>
@@ -6,3 +7,11 @@
         {% include "_file-card.html" %}
     {% endfor %}
 </div>
+{% else %}
+<div id="content" class="no-files d-flex align-items-center justify-content-center">
+    {% block no_content %}
+    <i class="fa-solid fa-upload pe-2"></i>
+    <span class="no-files__msg">No files have been uploaded yet...</span>
+    {% endblock no_content %}
+</div>
+{% endif %}

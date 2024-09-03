@@ -1,3 +1,8 @@
 {% extends '_all-files.html' %}
 
 {% block subtitle %}Shared Files{% endblock subtitle %}
+
+{% block no_content %}
+<i class="fa-solid fa-share pe-2"></i>
+<span class="no-files__msg">You haven't shared any files...</span>
+{% endblock no_content %}

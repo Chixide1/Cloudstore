@@ -33,9 +33,6 @@ body {
   color: #583DA1; }
 
 #uploadToast {
-  color: #583DA1; }
-
-#uploadToast {
   position: fixed;
   bottom: 10px;
   /* Adjust the top position as needed */
@@ -45,9 +42,19 @@ body {
   z-index: 10;
   /* Ensure it's above other elements */
   color: #EEEFF1;
-  min-width: 230px; }
+  max-width: 200px; }
   #uploadToast progress {
+    width: 150px;
     accent-color: #583DA1; }
+
+#uploadToastFileName {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap; }
+
+#uploadToastText {
+  width: 30px;
+  margin-inline: auto; }
 
 .login {
   display: flex;
@@ -192,10 +199,21 @@ body {
   overflow-y: auto;
   padding-inline: 5%; }
 
+.no-files {
+  width: 100%;
+  height: 90vh;
+  font-size: 18px;
+  padding-bottom: 10vh; }
+  .no-files__msg {
+    text-wrap: balance;
+    width: 180px; }
+
 @media (max-width: 768px) {
   .file-grid {
     height: 92.5vh;
-    height: 92.5dvh; } }
+    height: 92.5dvh; }
+  .no-files {
+    height: 95vh; } }
 
 .sidebar {
   min-width: 170px;
