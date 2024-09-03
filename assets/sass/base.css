@@ -32,6 +32,23 @@ body {
   background-color: var(--bs-gray-400);
   color: #583DA1; }
 
+#uploadToast {
+  color: #583DA1; }
+
+#uploadToast {
+  position: fixed;
+  bottom: 10px;
+  /* Adjust the top position as needed */
+  right: 20px;
+  /* Adjust the right position as needed */
+  border: 1px solid var(--bs-gray-600);
+  z-index: 10;
+  /* Ensure it's above other elements */
+  color: #EEEFF1;
+  min-width: 230px; }
+  #uploadToast progress {
+    accent-color: #583DA1; }
+
 .login {
   display: flex;
   justify-content: space-between;

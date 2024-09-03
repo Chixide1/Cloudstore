@@ -1,3 +1,4 @@
+from time import sleep
 from .utils import getCurrentPath, quota
 from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed
@@ -69,6 +70,7 @@ def favourites(request: HttpRequest):
     if not request.htmx:
         return redirect('/')
     
+    sleep(5)
     files = File.objects.filter(user=request.user).filter(favourite=1)
     return render(request, '_favourites.html', {"files": files[::-1]})
 
@@ -129,6 +131,7 @@ def delete_file(request: HttpRequest, file_id: int):
     
     file = File.objects.get(pk=file_id)
     if request.user == file.user:
+        file.data.delete()
         file.delete()
         request.method = "GET"
         return dashboard(request)
