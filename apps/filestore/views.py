@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-from time import sleep
 from .utils import getCurrentPath, quota
-=======
-from .utils import generate_chunks, getCurrentPath, quota
->>>>>>> 87e73f34abd71c155c3c6a3a430236a32bb18ce5
+from .utils import getCurrentPath, quota
 from uuid import UUID, uuid4
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotAllowed, StreamingHttpResponse
 from django.shortcuts import render, redirect
@@ -74,7 +70,6 @@ def favourites(request: HttpRequest):
     if not request.htmx:
         return redirect('/')
     
-    sleep(5)
     files = File.objects.filter(user=request.user).filter(favourite=1)
     return render(request, '_favourites.html', {"files": files[::-1]})
 
@@ -108,9 +103,10 @@ def download_file(request: HttpRequest, file_id: int, key: UUID | None = None ):
     shared = Shared.objects.filter(file__id=file_id).first()
 
     if file.user == request.user:
-        response = StreamingHttpResponse(generate_chunks(file.data), content_type=file.type)
-        response['Content-Disposition'] = f"attachment; filename={file.name}"
-        return response
+        with file.data as f:
+            response = HttpResponse(f.read(), content_type=file.type)
+            response['Content-Disposition'] = f"attachment; filename={file.name}"
+            return response
     
     if not shared:
         return HttpResponseForbidden()
