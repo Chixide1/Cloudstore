@@ -1,4 +1,5 @@
 from urllib.parse import urlparse
+from django.forms import FileField
 from django.http import HttpRequest, HttpResponse 
 
 #Global Variables
@@ -13,3 +14,8 @@ def getCurrentPath(request: HttpRequest) -> HttpResponse:
         return s(request)
     else:
         return a(request)
+
+def generate_chunks(data: FileField):
+    with data as f:
+        for chunk in iter(lambda: f.read(1024), b''):
+            yield chunk
