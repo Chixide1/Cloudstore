@@ -42,19 +42,28 @@ body {
 }
 
 #uploadToast {
-    color: $accent-clr;
-}
-
-#uploadToast {
     position: fixed;
     bottom: 10px; /* Adjust the top position as needed */
     right: 20px; /* Adjust the right position as needed */
     border: 1px solid var(--bs-gray-600);
     z-index: 10; /* Ensure it's above other elements */
     color: $primary-clr-2;
-    min-width: 230px;
+    max-width: 200px;
 
     progress {
+        width: 150px;
         accent-color: $accent-clr;
     }
+
+}
+
+#uploadToastFileName {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+#uploadToastText {
+    width: 30px;
+    margin-inline: auto;
 }

@@ -1,6 +1,12 @@
-<div class="d-flex align-items-center gap-2 p-3 bg-dark rounded htmx-indicator" id="uploadToast">
-    <span id="uploadToastText" class="p-2">0%</span>
-    <progress id='uploadProgress' value='0' max='100'></progress>
+<div class="p-3 bg-dark rounded htmx-indicator" id="uploadToast">
+    <div class="w-100 text-center d-flex gap-2 align-items-center justify-content-center">
+        <i class="fa-solid fa-file"></i>
+        <span id="uploadToastFileName"></span>
+    </div>
+    <div class="d-flex align-items-center gap-2 justify-content-end">
+        <span id="uploadToastText">0%</span>
+        <progress id='uploadProgress' value='0' max='100'></progress>
+    </div>
 </div>
 
 <div class="position-absolute top-50 start-50 translate-middle htmx-indicator" id="spinner">

@@ -1,13 +1,18 @@
 <div class="topbar d-flex align-items-center justify-content-between px-4">
     <form id="upload-form" enctype="multipart/form-data" hx-post="{% url 'upload_file' %}" 
-    hx-encoding="multipart/form-data" hx-trigger="change" hx-target="#main" hx-swap="outerHTML" hx-indicator="#uploadToast"
-    _="on htmx:xhr:progress(loaded, total) set #uploadProgress.value to (loaded/total)*100
-    then put `$(((loaded/total)*100).toFixed(0))%` into #uploadToastText">
+    hx-encoding="multipart/form-data" hx-trigger="change" hx-target="#main" hx-swap="outerHTML"
+    hx-indicator="#uploadToast">
         {% csrf_token %}
         {{ uploadform }}
         <button class="btn btn--accent topbar__upload-btn" id="upload-btn" type="button">
             <i class="fa-solid fa-cloud-arrow-up"></i><span class="ps-2">Upload</span>
         </button>
+        <script type="text/hyperscript">
+            on htmx:xhr:progress(loaded, total)
+            set #uploadProgress.value to (loaded/total)*100
+            put `$(((loaded/total)*100).toFixed(0))%` into #uploadToastText
+            put #upload-hidden.files[0].name into #uploadToastFileName
+        </script>
     </form> 
     <form class="input-group topbar__searchbar">
         {% csrf_token %}
