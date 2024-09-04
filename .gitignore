@@ -1,0 +1,6 @@
+.*
+db.sqlite
+*__pycache__*
+uploads/
+todo.md
+!.gitignore
