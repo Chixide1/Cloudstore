@@ -161,7 +161,7 @@ MEDIA_URL = '/uploads/'
 if ENV == 'dev':
     CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1']
 else:
-    CSRF_TRUSTED_ORIGINS = ['https://*.chikdoestech.xyz']
+    CSRF_TRUSTED_ORIGINS = ['https://*.ckdoestech.com']
 
 # Alert messages in templates
 MESSAGE_TAGS = {
