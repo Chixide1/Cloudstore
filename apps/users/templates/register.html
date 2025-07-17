@@ -4,7 +4,7 @@
 {% block title %}Register{% endblock title %}
 
 {% block content %}
-<main class="login">
+<div class="login">
     <div class="login__container">
         <div class="login__content">
             <h4 class="login__title text-dark"><i class="fa-solid fa-circle-nodes"></i> Cloudstore</h4>
@@ -29,9 +29,9 @@
         </div>
     </div>
     <div class="login__image" title=" Image by freepik: https://www.freepik.com/free-vector/gradient-abstract-background_35296759.htm#position=23"></div>
-</main>
-<script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-  </script>  
+</div>
 {% endblock content %}
+
+{% block js %}
+    {% include '_js_users.html' %}
+{% endblock js %}

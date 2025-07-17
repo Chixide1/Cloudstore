@@ -1,0 +1,20 @@
+from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
+
+class Command(BaseCommand):
+    help = 'Create a demo user'
+
+    def handle(self, *args, **options):
+        if not User.objects.filter(username='demo').exists():
+            User.objects.create_user(
+                username='demo',
+                email='demo@example.com',
+                password='demo123'
+            )
+            self.stdout.write(
+                self.style.SUCCESS('Demo user created successfully')
+            )
+        else:
+            self.stdout.write(
+                self.style.WARNING('Demo user already exists')
+            )

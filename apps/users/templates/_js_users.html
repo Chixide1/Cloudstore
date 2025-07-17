@@ -1,0 +1,33 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+    const demoData = {
+        username: 'demo',
+        password: 'demo123'
+    };
+
+    function fillDemoData() {
+        // Your form field IDs might be different - adjust accordingly
+        const usernameField = document.querySelector('input[name="username"]');
+        const passwordField = document.querySelector('input[name="password"]');
+        
+        if (usernameField && passwordField) {
+            usernameField.value = demoData.username;
+            passwordField.value = demoData.password;
+            
+            // Add visual feedback
+            usernameField.classList.add('input-filled');
+            passwordField.classList.add('input-filled');
+            
+            setTimeout(() => {
+                usernameField.classList.remove('input-filled');
+                passwordField.classList.remove('input-filled');
+            }, 500);
+        }
+    }
+</script>
