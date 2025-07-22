@@ -9,7 +9,7 @@ class Command(BaseCommand):
             User.objects.create_user(
                 username='demo',
                 email='demo@example.com',
-                password='demo123'
+                password='demouser357!'
             )
             self.stdout.write(
                 self.style.SUCCESS('Demo user created successfully')
