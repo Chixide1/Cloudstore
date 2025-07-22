@@ -5,7 +5,8 @@
 
 body {
   font-family: 'Chillax' !important;
-  font-size: smaller !important; }
+  font-size: smaller !important;
+  background-color: #F6F6F6; }
 
 .form-control {
   background-color: #F9F9FB; }
