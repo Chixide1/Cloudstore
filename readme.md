@@ -1,7 +1,3 @@
-Here's an updated version of your text that explains how to run a Django app, while maintaining the original context and clarity:
-
----
-
 # Cloudstore
 
 I decided to create a second version of my Azure Fileshare App, as the first version had too many dependencies and was confusing to host and set up.

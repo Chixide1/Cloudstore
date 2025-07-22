@@ -5,8 +5,7 @@
 
 body {
   font-family: 'Chillax' !important;
-  font-size: smaller !important;
-  background-color: #F6F6F6; }
+  font-size: smaller !important; }
 
 .form-control {
   background-color: #F9F9FB; }
@@ -393,5 +392,3 @@ body {
 
 .file-card:focus-within {
   border: 2px solid #583DA1; }
-
-/*# sourceMappingURL=base.css.map */
