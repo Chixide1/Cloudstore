@@ -4,4 +4,3 @@ db.sqlite
 uploads/
 todo.md
 !.gitignore
-base.css*
